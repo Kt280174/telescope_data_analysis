@@ -1,0 +1,37 @@
+{
+  "date": "2026-11-11",
+  "tables": [
+    "communities_leiden",
+    "communities_infomap",
+    "community_summary",
+    "community_profiles_leiden",
+    "community_flows_leiden",
+    "community_comparison",
+    "yearly_communities",
+    "resolution_curve",
+    "community_names"
+  ],
+  "seconds": 1066,
+  "args": {
+    "gold": "telescope_pipeline_files/gold",
+    "out": "bigdata_pipeline/analysis/communities_v2",
+    "figdir": "bigdata_pipeline/analysis/figures/community_detection",
+    "resolution": "1.0",
+    "seed": "42",
+    "min_weight": "1",
+    "infomap_trials": "1",
+    "skip_infomap": "False",
+    "reuse_leiden": "False",
+    "seed_baseline": "True",
+    "skip_yearly": "False",
+    "resolution_curve": "True",
+    "curve_resolutions": "0.5,0.8,1.0,1.2,1.5,2.0",
+    "languages": "telescope_files/Channel_Language.csv",
+    "top": "20",
+    "meta_top": "50",
+    "min_year_edges": "5000",
+    "top_flows": "15",
+    "no_charts": "False",
+    "selftest": "False"
+  }
+}

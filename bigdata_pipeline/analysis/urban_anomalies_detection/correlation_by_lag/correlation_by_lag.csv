@@ -1,0 +1,8 @@
+City_1,City_2,Lag_Days,Correlation
+Nizhny Novgorod,Novosibirsk,-3,0.812
+Nizhny Novgorod,Novosibirsk,-2,0.8212
+Nizhny Novgorod,Novosibirsk,-1,0.8448
+Nizhny Novgorod,Novosibirsk,0,0.8655
+Nizhny Novgorod,Novosibirsk,1,0.8429
+Nizhny Novgorod,Novosibirsk,2,0.8225
+Nizhny Novgorod,Novosibirsk,3,0.8163
