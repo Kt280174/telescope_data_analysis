@@ -1,13 +1,13 @@
-"""TeleScope v2 - Streamlit viewer for the analysis results (themes 1 to 3).
+"""TeleScope v2 - Streamlit viewer for the analysis results (themes 1 to 4).
 
 Read-only: the app reads the CSV / PNG / README files already written in
 bigdata_pipeline/analysis/ and recomputes nothing.
 
 Run (from the project root, venv active):
     pip install streamlit
-    streamlit run bigdata_pipeline/analysis/telescope_app.py
+    streamlit run bigdata_pipeline/analysis/app/telescope_app.py
 Other analysis folder:
-    streamlit run bigdata_pipeline/analysis/telescope_app.py -- --analysis path/to/analysis
+    streamlit run bigdata_pipeline/analysis/app/telescope_app.py -- --analysis path/to/analysis
 """
 from __future__ import annotations
 
@@ -17,12 +17,17 @@ from pathlib import Path
 
 import pandas as pd
 import streamlit as st
+import streamlit.components.v1 as components
+
+from telescope_captions import describe, title_of
 
 # ----------------------------------------------------------------- configuration
-THEMES = {   # page id -> folders under the analysis directory
-    "theme1": {"tables": "communities_v2", "figures": "figures/community_detection"},
-    "theme2": {"tables": "language_v2", "figures": "figures/language_communities"},
-    "theme3": {"tables": "tracing", "figures": "figures/traceability"},
+THEMES = {   # page id -> folders under the analysis directory (fixed layout, no search)
+    "theme1": {"tables": ["communities_v2"], "figures": ["figures/community_detection"]},
+    "theme2": {"tables": ["language_v2"], "figures": ["figures/language_communities"]},
+    "theme3": {"tables": ["tracing"], "figures": ["figures/traceability"]},
+    "theme4": {"tables": ["geo", "anomalies"], "figures": ["figures/geo", "figures/anomalies"],
+               "maps": "figures/anomalies"},
 }
 # figures checked during the analyses (after deduplication): label key -> value
 PIPELINE_KPI = [
@@ -36,7 +41,7 @@ TIME_HINTS = re.compile(r"year|annee|month|mois|date|period|quarter", re.I)
 ID_HINTS = re.compile(r"(^id$|_id$|^channel|^source$|^name$|^file|community|cluster|^rank|^index)", re.I)
 
 # ----------------------------------------------------------------- translations
-LANGS = {"ru": "Русский", "en": "English", "fr": "Français"}
+LANGS = {"fr": "Français", "en": "English", "ru": "Русский"}
 TEXT = {
     "analysis_dir": {"fr": "Dossier d'analyse", "en": "Analysis folder", "ru": "Папка анализа"},
     "language": {"fr": "Langue", "en": "Language", "ru": "Язык"},
@@ -69,6 +74,26 @@ TEXT = {
               "concentration of sources.",
         "ru": "Уровни прослеживаемости A/B/C/D, проверка источника по корпусу, размеры цепочек, "
               "задержки и концентрация источников."},
+    "theme4_title": {"fr": "Thème 4 — Pics d'activité géolocalisés", "en": "Theme 4 — Geolocated activity peaks",
+                     "ru": "Тема 4 — Геолокализованные пики активности"},
+    "theme4_intro": {
+        "fr": "Identification, segmentation et corrélation des anomalies temporelles (pics d'activité géolocalisés) "
+              "dans les zones urbaines cibles, et ordre de réaction des villes.",
+        "en": "Identification, segmentation and correlation of temporal anomalies (geolocated activity peaks) "
+              "in the target urban areas, and the order in which cities react.",
+        "ru": "Выявление, сегментация и корреляция временных аномалий (геолокализованных пиков активности) "
+              "в целевых городских зонах и порядок реакции городов."},
+    "tab_maps": {"fr": "Cartes interactives", "en": "Interactive maps", "ru": "Интерактивные карты"},
+    "map_choice": {"fr": "Carte", "en": "Map", "ru": "Карта"},
+    "map_note": {
+        "fr": "Les cartes se chargent depuis Internet (fond de carte). Utilisez les menus au-dessus de la carte.",
+        "en": "The maps load their base map from the Internet. Use the menus above the map.",
+        "ru": "Карты подгружают подложку из Интернета. Используйте меню над картой."},
+    "no_maps": {"fr": "Aucune carte (map_*.html) dans `{path}`. Lancez anomaly_maps.py.",
+                "en": "No map (map_*.html) in `{path}`. Run anomaly_maps.py.",
+                "ru": "В `{path}` нет карт (map_*.html). Запустите anomaly_maps.py."},
+    "dl_map": {"fr": "Télécharger la carte (HTML)", "en": "Download the map (HTML)", "ru": "Скачать карту (HTML)"},
+    "key_figures": {"fr": "Chiffres clés", "en": "Key figures", "ru": "Ключевые цифры"},
     "pipeline_header": {"fr": "Pipeline Big Data (PySpark)", "en": "Big Data pipeline (PySpark)",
                         "ru": "Big Data конвейер (PySpark)"},
     "pipeline_text": {
@@ -129,7 +154,7 @@ TEXT = {
     "protocol": {"fr": "Protocole de traçabilité", "en": "Traceability protocol",
                  "ru": "Протокол прослеживаемости"},
     "tab_tables": {"fr": "Tableaux", "en": "Tables", "ru": "Таблицы"},
-    "tab_figs": {"fr": "Graphes (PNG)", "en": "Charts (PNG)", "ru": "Графики (PNG)"},
+    "tab_figs": {"fr": "Graphes", "en": "Charts", "ru": "Графики"},
     "n_tables": {"fr": "{n} tableaux trouvés dans `{path}`", "en": "{n} tables found in `{path}`",
                  "ru": "Найдено таблиц: {n} в `{path}`"},
     "no_csv": {
@@ -289,45 +314,91 @@ def table_view(files: dict[str, Path], key: str) -> None:
             st.line_chart(data)
 
 
-def figures_view(fig_dir: Path) -> None:
-    pngs = sorted(fig_dir.glob("*.png")) if fig_dir.is_dir() else []
+def get_table_factory(files: dict[str, Path]):
+    """Function name -> DataFrame (or None) over the tables of a page, used by the captions."""
+    by_stem = {p.stem: p for p in files.values()}
+
+    def get(name: str):
+        p = by_stem.get(name)
+        return load_csv(str(p), p.stat().st_mtime) if p is not None else None
+    return get
+
+
+def caption_block(stem: str, get_table) -> None:
+    """Short description and key figures of a chart or map (Markdown lines)."""
+    what, facts = describe(stem, LANG, get_table)
+    if what:
+        st.markdown(f"- {what}")
+    if facts:
+        st.markdown(f"- **{tr('key_figures')} :** {facts}" if LANG == "fr" else f"- **{tr('key_figures')}:** {facts}")
+
+
+def figures_view(fig_dirs: list[Path], get_table) -> None:
+    pngs = [(d, p) for d in fig_dirs if d.is_dir() for p in sorted(d.glob("*.png"))]
     if not pngs:
-        st.warning(tr("no_png", path=fig_dir))
+        st.warning(tr("no_png", path=", ".join(str(d) for d in fig_dirs)))
         return
-    readme = fig_dir / "README.md"
-    if readme.is_file():
-        with st.expander(tr("readme_figs")):
-            st.markdown(read_text(readme))
-    for p in pngs:
-        st.image(str(p), caption=p.name, width=1000)
+    for d in fig_dirs:
+        readme = d / "README.md"
+        if readme.is_file():
+            with st.expander(f"{tr('readme_figs')} — {d.name}"):
+                st.markdown(read_text(readme))
+    for _, p in pngs:
+        st.markdown(f"#### {title_of(p.stem, LANG)}")
+        caption_block(p.stem, get_table)
+        st.image(str(p), width=1000)
+
+
+def maps_view(map_dir: Path, get_table) -> None:
+    maps = sorted(map_dir.glob("map_*.html")) if map_dir.is_dir() else []
+    if not maps:
+        st.warning(tr("no_maps", path=map_dir))
+        return
+    st.caption(tr("map_note"))
+    names = {p.stem: p for p in maps}
+    choice = st.selectbox(tr("map_choice"), list(names), format_func=lambda k: title_of(k, LANG), key="map_choice")
+    path = names[choice]
+    caption_block(choice, get_table)
+    html = read_text(path)
+    components.html(html, height=800, scrolling=False)
+    st.download_button(tr("dl_map"), html.encode("utf-8"), file_name=path.name, mime="text/html", key="map_dl")
 
 
 def page_theme(page_id: str, analysis: Path) -> None:
     cfg = THEMES[page_id]
     st.header(tr(f"{page_id}_title"))
     st.write(tr(f"{page_id}_intro"))
-    tdir, fdir = analysis / cfg["tables"], analysis / cfg["figures"]
-    files = discover_tables(tdir)
-    key = cfg["tables"]
+    tdirs = [analysis / t for t in cfg["tables"]]
+    fdirs = [analysis / f for f in cfg["figures"]]
+    files: dict[str, Path] = {}
+    for tdir in tdirs:
+        found = discover_tables(tdir)
+        files.update({(f"{tdir.name}/{k}" if len(tdirs) > 1 else k): v for k, v in found.items()})
+    key = page_id
+    get_table = get_table_factory(files)
 
-    info = tdir / "run_info.json"
+    info = tdirs[0] / "run_info.json"
     if info.is_file():
         with st.expander(tr("run_info")):
             st.code(read_text(info), language="json")
-    protocol = tdir / "tracing_protocol.md"
+    protocol = tdirs[0] / "tracing_protocol.md"
     if protocol.is_file():
         with st.expander(tr("protocol")):
             st.markdown(read_text(protocol))
 
-    tab_tables, tab_figs = st.tabs([tr("tab_tables"), tr("tab_figs")])
-    with tab_tables:
+    labels = [tr("tab_tables"), tr("tab_figs")] + ([tr("tab_maps")] if "maps" in cfg else [])
+    tabs = st.tabs(labels)
+    with tabs[0]:
         if files:
-            st.caption(tr("n_tables", n=len(files), path=tdir))
+            st.caption(tr("n_tables", n=len(files), path=", ".join(str(d) for d in tdirs)))
             table_view(files, key)
         else:
-            st.warning(tr("no_csv", path=tdir))
-    with tab_figs:
-        figures_view(fdir)
+            st.warning(tr("no_csv", path=", ".join(str(d) for d in tdirs)))
+    with tabs[1]:
+        figures_view(fdirs, get_table)
+    if "maps" in cfg:
+        with tabs[2]:
+            maps_view(analysis / cfg["maps"], get_table)
 
 
 def main() -> None:
