@@ -41,7 +41,7 @@ TIME_HINTS = re.compile(r"year|annee|month|mois|date|period|quarter", re.I)
 ID_HINTS = re.compile(r"(^id$|_id$|^channel|^source$|^name$|^file|community|cluster|^rank|^index)", re.I)
 
 # ----------------------------------------------------------------- translations
-LANGS = {"fr": "Français", "en": "English", "ru": "Русский"}
+LANGS = {"ru": "Русский", "en": "English", "fr": "Français"}
 TEXT = {
     "analysis_dir": {"fr": "Dossier d'analyse", "en": "Analysis folder", "ru": "Папка анализа"},
     "language": {"fr": "Langue", "en": "Language", "ru": "Язык"},
