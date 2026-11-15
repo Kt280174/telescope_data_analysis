@@ -1,0 +1,45 @@
+sync_id,lead_k2.5,lead_k3,lead_k4,stable
+1,Moscow (Russia),Moscow (Russia),Moscow (Russia),True
+2,Volgograd (Russia),Volgograd (Russia),Khabarovsk (Russia),False
+3,Moscow (Russia),Moscow (Russia),Moscow (Russia),True
+4,Chelyabinsk (Russia),Chelyabinsk (Russia),Chelyabinsk (Russia),True
+5,Minsk (Belarus),Minsk (Belarus),Minsk (Belarus),True
+6,Minsk (Belarus),Minsk (Belarus),Simferopol (Russia),False
+7,Krasnodar (Russia),Krasnodar (Russia),Krasnodar (Russia),True
+8,Kharkiv (Ukraine),,,False
+9,Chelyabinsk (Russia),Chelyabinsk (Russia),Irkutsk (Russia),False
+10,Chelyabinsk (Russia),Volgograd (Russia),Yekaterinburg (Russia),False
+11,Yekaterinburg (Russia),Rostov-on-Don (Russia),Rostov-on-Don (Russia),False
+12,Saint Petersburg (Russia),Volgograd (Russia),Volgograd (Russia),False
+13,Luhansk (Ukraine),Vladivostok (Russia),Vladivostok (Russia),False
+14,Sevastopol (Russia),Tehran (Iran),Tehran (Iran),False
+15,Donetsk (Ukraine),Donetsk (Ukraine),Donetsk (Ukraine),True
+16,Luhansk (Ukraine),Luhansk (Ukraine),Donetsk (Ukraine),False
+17,Donetsk (Ukraine),Donetsk (Ukraine),Donetsk (Ukraine),True
+18,Luhansk (Ukraine),Luhansk (Ukraine),Luhansk (Ukraine),True
+19,Irkutsk (Russia),Krasnodar (Russia),Krasnodar (Russia),False
+20,Ufa (Russia),Ufa (Russia),Sydney (Australia),False
+21,Omsk (Russia),Omsk (Russia),Omsk (Russia),True
+22,Sevastopol (Russia),Sevastopol (Russia),Sevastopol (Russia),True
+23,Kyiv (Ukraine),Kyiv (Ukraine),Kyiv (Ukraine),True
+24,Perm (Russia),Nizhny Novgorod (Russia),Nizhny Novgorod (Russia),False
+25,Yekaterinburg (Russia),Yekaterinburg (Russia),Yekaterinburg (Russia),True
+26,Vladivostok (Russia),Vladivostok (Russia),Vladivostok (Russia),True
+27,Yekaterinburg (Russia),Sydney (Australia),Sydney (Australia),False
+28,Nizhny Novgorod (Russia),Nizhny Novgorod (Russia),Nizhny Novgorod (Russia),True
+29,Nizhny Novgorod (Russia),Nizhny Novgorod (Russia),Nizhny Novgorod (Russia),True
+30,Rivne (Ukraine),Rivne (Ukraine),Rivne (Ukraine),True
+31,Sydney (Australia),Sydney (Australia),Sydney (Australia),True
+32,Odesa (Ukraine),,,False
+33,Ufa (Russia),Ufa (Russia),Ufa (Russia),True
+34,Ufa (Russia),Nizhny Novgorod (Russia),Nizhny Novgorod (Russia),False
+35,Simferopol (Russia),Simferopol (Russia),Sydney (Australia),False
+36,Odesa (Ukraine),Sydney (Australia),Sydney (Australia),False
+37,Nizhny Novgorod (Russia),Nizhny Novgorod (Russia),Sydney (Australia),False
+38,Voronezh (Russia),Perm (Russia),Perm (Russia),False
+39,Odesa (Ukraine),Minsk (Belarus),Minsk (Belarus),False
+40,Simferopol (Russia),Simferopol (Russia),,False
+41,Krasnoyarsk (Russia),Perm (Russia),Perm (Russia),False
+42,Chelyabinsk (Russia),Chelyabinsk (Russia),Chelyabinsk (Russia),True
+43,Moscow (Russia),Moscow (Russia),Moscow (Russia),True
+44,Ufa (Russia),Ufa (Russia),Ufa (Russia),True

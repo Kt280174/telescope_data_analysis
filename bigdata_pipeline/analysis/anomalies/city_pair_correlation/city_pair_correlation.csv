@@ -1,0 +1,404 @@
+city_a,city_b,corr_lag0,best_lag_days,best_corr
+Poltava (Ukraine),Zhytomyr (Ukraine),0.776,3,0.857
+Voronezh (Russia),Nizhny Novgorod (Russia),0.789,0,0.789
+Nizhny Novgorod (Russia),Ufa (Russia),0.743,0,0.743
+Odesa (Ukraine),Vinnytsia (Ukraine),0.709,0,0.709
+Voronezh (Russia),Ufa (Russia),0.708,0,0.708
+Saint Petersburg (Russia),Tyumen (Russia),0.69,0,0.69
+Kherson (Ukraine),Vinnytsia (Ukraine),0.682,0,0.682
+Nizhny Novgorod (Russia),Kherson (Ukraine),0.658,0,0.658
+Ufa (Russia),Odesa (Ukraine),0.653,0,0.653
+Rostov-on-Don (Russia),Irkutsk (Russia),0.649,0,0.649
+Ufa (Russia),Vinnytsia (Ukraine),0.643,0,0.643
+Nizhny Novgorod (Russia),Novosibirsk (Russia),0.643,0,0.643
+Nizhny Novgorod (Russia),Odesa (Ukraine),0.615,0,0.615
+Kherson (Ukraine),Perm (Russia),0.61,0,0.61
+Saratov (Russia),Ufa (Russia),0.596,0,0.596
+Saratov (Russia),Voronezh (Russia),0.596,0,0.596
+Ufa (Russia),Lviv (Ukraine),0.596,0,0.596
+Voronezh (Russia),Kherson (Ukraine),0.59,0,0.59
+Voronezh (Russia),Odesa (Ukraine),0.581,0,0.581
+Ufa (Russia),Kherson (Ukraine),0.581,0,0.581
+Nizhny Novgorod (Russia),Vinnytsia (Ukraine),0.574,0,0.574
+Nizhny Novgorod (Russia),Perm (Russia),0.567,0,0.567
+Kherson (Ukraine),Odesa (Ukraine),0.567,0,0.567
+Saratov (Russia),Nizhny Novgorod (Russia),0.565,0,0.565
+Ufa (Russia),Novosibirsk (Russia),0.559,0,0.559
+Saratov (Russia),Odesa (Ukraine),0.553,0,0.553
+Saratov (Russia),Vinnytsia (Ukraine),0.552,0,0.552
+Ufa (Russia),Perm (Russia),0.552,0,0.552
+Nizhny Novgorod (Russia),Lviv (Ukraine),0.549,0,0.549
+Saratov (Russia),Kherson (Ukraine),0.547,0,0.547
+Voronezh (Russia),Vinnytsia (Ukraine),0.542,0,0.542
+Voronezh (Russia),Novosibirsk (Russia),0.541,0,0.541
+Voronezh (Russia),Perm (Russia),0.533,0,0.533
+Kherson (Ukraine),Novosibirsk (Russia),0.52,0,0.52
+Voronezh (Russia),Lviv (Ukraine),0.515,0,0.515
+Lviv (Ukraine),Vinnytsia (Ukraine),0.515,0,0.515
+Rostov-on-Don (Russia),Perm (Russia),0.503,0,0.503
+Irkutsk (Russia),Perm (Russia),0.493,0,0.493
+Perm (Russia),Vinnytsia (Ukraine),0.487,0,0.487
+Donetsk (Ukraine),Kharkiv (Ukraine),0.484,0,0.484
+Kherson (Ukraine),Lviv (Ukraine),0.482,0,0.482
+Odesa (Ukraine),Lviv (Ukraine),0.475,0,0.475
+Saratov (Russia),Perm (Russia),0.474,0,0.474
+Tyumen (Russia),Vladivostok (Russia),0.471,0,0.471
+Saratov (Russia),Lviv (Ukraine),0.466,0,0.466
+Irkutsk (Russia),Nizhny Novgorod (Russia),0.462,0,0.462
+Rostov-on-Don (Russia),Luhansk (Ukraine),0.462,0,0.462
+Novosibirsk (Russia),Vinnytsia (Ukraine),0.461,0,0.461
+Volgograd (Russia),Nizhny Novgorod (Russia),0.46,0,0.46
+Novosibirsk (Russia),Odesa (Ukraine),0.459,0,0.459
+Volgograd (Russia),Kherson (Ukraine),0.455,0,0.455
+Perm (Russia),Odesa (Ukraine),0.454,0,0.454
+Rostov-on-Don (Russia),Kherson (Ukraine),0.45,0,0.45
+Moscow (Russia),Saint Petersburg (Russia),0.449,0,0.449
+Saratov (Russia),Novosibirsk (Russia),0.446,0,0.446
+Zaporizhzhia (Ukraine),Zhytomyr (Ukraine),0.352,-3,0.444
+Perm (Russia),Lviv (Ukraine),0.444,0,0.444
+Rostov-on-Don (Russia),Kazan (Russia),0.44,0,0.44
+Kazan (Russia),Krasnoyarsk (Russia),0.437,0,0.437
+Krasnoyarsk (Russia),Nizhny Novgorod (Russia),0.437,0,0.437
+Perm (Russia),Novosibirsk (Russia),0.436,0,0.436
+Volgograd (Russia),Voronezh (Russia),0.433,0,0.433
+Volgograd (Russia),Ufa (Russia),0.433,0,0.433
+Kazan (Russia),Irkutsk (Russia),0.429,0,0.429
+Sevastopol (Russia),Perm (Russia),0.429,0,0.429
+Luhansk (Ukraine),Perm (Russia),0.429,0,0.429
+Irkutsk (Russia),Kherson (Ukraine),0.421,0,0.421
+Voronezh (Russia),Irkutsk (Russia),0.42,0,0.42
+Luhansk (Ukraine),Irkutsk (Russia),0.418,0,0.418
+Rostov-on-Don (Russia),Nizhny Novgorod (Russia),0.416,0,0.416
+Novosibirsk (Russia),Lviv (Ukraine),0.416,0,0.416
+Volgograd (Russia),Perm (Russia),0.412,0,0.412
+Sevastopol (Russia),Kherson (Ukraine),0.389,1,0.406
+Saint Petersburg (Russia),Vladivostok (Russia),0.405,0,0.405
+Yekaterinburg (Russia),Simferopol (Russia),0.405,0,0.405
+Luhansk (Ukraine),Kherson (Ukraine),0.402,0,0.402
+Irkutsk (Russia),Ufa (Russia),0.401,0,0.401
+Sevastopol (Russia),Nizhny Novgorod (Russia),0.4,0,0.4
+Moscow (Russia),Kazan (Russia),0.4,0,0.4
+Krasnoyarsk (Russia),Perm (Russia),0.4,0,0.4
+Moscow (Russia),Donetsk (Ukraine),0.396,0,0.396
+Sevastopol (Russia),Rostov-on-Don (Russia),0.389,0,0.389
+Moscow (Russia),Krasnodar (Russia),0.388,0,0.388
+Rostov-on-Don (Russia),Voronezh (Russia),0.387,0,0.387
+Volgograd (Russia),Novosibirsk (Russia),0.387,0,0.387
+Saratov (Russia),Volgograd (Russia),0.386,0,0.386
+Rostov-on-Don (Russia),Krasnoyarsk (Russia),0.385,0,0.385
+Rostov-on-Don (Russia),Yekaterinburg (Russia),0.385,0,0.385
+Irkutsk (Russia),Samara (Russia),0.384,0,0.384
+Kharkiv (Ukraine),Poltava (Ukraine),0.363,3,0.38
+Kazan (Russia),Perm (Russia),0.378,0,0.378
+Krasnoyarsk (Russia),Voronezh (Russia),0.378,0,0.378
+Luhansk (Ukraine),Omsk (Russia),0.377,0,0.377
+Yekaterinburg (Russia),Kazan (Russia),0.375,0,0.375
+Kazan (Russia),Omsk (Russia),0.374,0,0.374
+Moscow (Russia),Kharkiv (Ukraine),0.372,0,0.372
+Sevastopol (Russia),Kazan (Russia),0.371,0,0.371
+Kazan (Russia),Kherson (Ukraine),0.367,0,0.367
+Khabarovsk (Russia),Perm (Russia),0.366,0,0.366
+Rostov-on-Don (Russia),Ufa (Russia),0.366,0,0.366
+Kazan (Russia),Nizhny Novgorod (Russia),0.366,0,0.366
+Krasnoyarsk (Russia),Irkutsk (Russia),0.365,0,0.365
+Sevastopol (Russia),Saratov (Russia),0.362,0,0.362
+Kyiv (Ukraine),Kazan (Russia),0.362,0,0.362
+Kharkiv (Ukraine),Zhytomyr (Ukraine),0.269,3,0.359
+Sevastopol (Russia),Irkutsk (Russia),0.357,0,0.357
+Luhansk (Ukraine),Kazan (Russia),0.356,0,0.356
+Sevastopol (Russia),Ufa (Russia),0.356,0,0.356
+Yekaterinburg (Russia),Chelyabinsk (Russia),0.356,0,0.356
+Yekaterinburg (Russia),Irkutsk (Russia),0.355,0,0.355
+Moscow (Russia),Poltava (Ukraine),0.318,3,0.354
+Kazan (Russia),Volgograd (Russia),0.353,0,0.353
+Kazan (Russia),Saratov (Russia),0.352,0,0.352
+Volgograd (Russia),Vinnytsia (Ukraine),0.351,0,0.351
+Minsk (Belarus),Kyiv (Ukraine),0.348,0,0.348
+Rostov-on-Don (Russia),Saratov (Russia),0.348,0,0.348
+Tyumen (Russia),Chelyabinsk (Russia),0.346,0,0.346
+Volgograd (Russia),Odesa (Ukraine),0.344,0,0.344
+Donetsk (Ukraine),Vladivostok (Russia),0.344,0,0.344
+Krasnoyarsk (Russia),Ufa (Russia),0.342,0,0.342
+Sevastopol (Russia),Krasnoyarsk (Russia),0.342,0,0.342
+Minsk (Belarus),Kazan (Russia),0.341,0,0.341
+Volgograd (Russia),Irkutsk (Russia),0.339,0,0.339
+Moscow (Russia),Rostov-on-Don (Russia),0.339,0,0.339
+Irkutsk (Russia),Novosibirsk (Russia),0.338,0,0.338
+Saint Petersburg (Russia),Kazan (Russia),0.338,0,0.338
+Luhansk (Ukraine),Voronezh (Russia),0.337,0,0.337
+Tyumen (Russia),Yekaterinburg (Russia),0.337,0,0.337
+Samara (Russia),Perm (Russia),0.337,0,0.337
+Rostov-on-Don (Russia),Odesa (Ukraine),0.333,0,0.333
+Tehran (Iran),Mashhad (Iran),0.332,0,0.332
+Krasnoyarsk (Russia),Kherson (Ukraine),0.329,0,0.329
+Saratov (Russia),Irkutsk (Russia),0.328,0,0.328
+Kazan (Russia),Ufa (Russia),0.328,0,0.328
+Khabarovsk (Russia),Volgograd (Russia),0.326,0,0.326
+Sevastopol (Russia),Novosibirsk (Russia),0.326,0,0.326
+Sevastopol (Russia),Odesa (Ukraine),0.326,0,0.326
+Moscow (Russia),Sevastopol (Russia),0.325,0,0.325
+Sevastopol (Russia),Vinnytsia (Ukraine),0.268,1,0.325
+Rostov-on-Don (Russia),Volgograd (Russia),0.324,0,0.324
+Tyumen (Russia),Irkutsk (Russia),0.324,0,0.324
+Yekaterinburg (Russia),Nizhny Novgorod (Russia),0.323,0,0.323
+Khabarovsk (Russia),Nizhny Novgorod (Russia),0.323,0,0.323
+Kazan (Russia),Voronezh (Russia),0.322,0,0.322
+Kazan (Russia),Samara (Russia),0.322,0,0.322
+Minsk (Belarus),Luhansk (Ukraine),0.321,0,0.321
+Kyiv (Ukraine),Kherson (Ukraine),0.321,0,0.321
+Sevastopol (Russia),Voronezh (Russia),0.32,0,0.32
+Donetsk (Ukraine),Kazan (Russia),0.319,0,0.319
+Tyumen (Russia),Kazan (Russia),0.319,0,0.319
+Khabarovsk (Russia),Kherson (Ukraine),0.319,0,0.319
+Irkutsk (Russia),Odesa (Ukraine),0.319,0,0.319
+Moscow (Russia),Tyumen (Russia),0.318,0,0.318
+Rostov-on-Don (Russia),Tyumen (Russia),0.318,0,0.318
+Luhansk (Ukraine),Saratov (Russia),0.317,0,0.317
+Luhansk (Ukraine),Nizhny Novgorod (Russia),0.317,0,0.317
+Moscow (Russia),Zhytomyr (Ukraine),0.221,3,0.316
+Rostov-on-Don (Russia),Omsk (Russia),0.316,0,0.316
+Krasnoyarsk (Russia),Saratov (Russia),0.316,0,0.316
+Kharkiv (Ukraine),Kherson (Ukraine),0.315,0,0.315
+Krasnoyarsk (Russia),Volgograd (Russia),0.315,0,0.315
+Rostov-on-Don (Russia),Vinnytsia (Ukraine),0.315,0,0.315
+Volgograd (Russia),Lviv (Ukraine),0.315,0,0.315
+Rostov-on-Don (Russia),Samara (Russia),0.314,0,0.314
+Kazan (Russia),Odesa (Ukraine),0.312,0,0.312
+Khabarovsk (Russia),Irkutsk (Russia),0.311,0,0.311
+Rostov-on-Don (Russia),Chelyabinsk (Russia),0.311,0,0.311
+Sevastopol (Russia),Luhansk (Ukraine),0.298,1,0.31
+Rostov-on-Don (Russia),Novosibirsk (Russia),0.31,0,0.31
+Donetsk (Ukraine),Luhansk (Ukraine),0.31,0,0.31
+Kharkiv (Ukraine),Yekaterinburg (Russia),0.309,0,0.309
+Kharkiv (Ukraine),Rostov-on-Don (Russia),0.309,0,0.309
+Irkutsk (Russia),Omsk (Russia),0.307,0,0.307
+Saint Petersburg (Russia),Yekaterinburg (Russia),0.307,0,0.307
+Khabarovsk (Russia),Ufa (Russia),0.305,0,0.305
+Yekaterinburg (Russia),Perm (Russia),0.305,0,0.305
+Kherson (Ukraine),Dnipro (Ukraine),0.303,0,0.303
+Moscow (Russia),Volgograd (Russia),0.303,0,0.303
+Luhansk (Ukraine),Ufa (Russia),0.303,0,0.303
+Kyiv (Ukraine),Luhansk (Ukraine),0.303,0,0.303
+Sevastopol (Russia),Volgograd (Russia),0.303,0,0.303
+Dnipro (Ukraine),Odesa (Ukraine),0.302,0,0.302
+Saint Petersburg (Russia),Chelyabinsk (Russia),0.302,0,0.302
+Kyiv (Ukraine),Perm (Russia),0.302,0,0.302
+Kazan (Russia),Chelyabinsk (Russia),0.3,0,0.3
+Donetsk (Ukraine),Rostov-on-Don (Russia),0.3,0,0.3
+Yekaterinburg (Russia),Krasnoyarsk (Russia),0.298,0,0.298
+Luhansk (Ukraine),Yekaterinburg (Russia),0.297,0,0.297
+Saint Petersburg (Russia),Rostov-on-Don (Russia),0.296,0,0.296
+Omsk (Russia),Perm (Russia),0.296,0,0.296
+Moscow (Russia),Yekaterinburg (Russia),0.296,0,0.296
+Khabarovsk (Russia),Voronezh (Russia),0.295,0,0.295
+Kharkiv (Ukraine),Kazan (Russia),0.295,0,0.295
+Kharkiv (Ukraine),Simferopol (Russia),0.295,0,0.295
+Sevastopol (Russia),Yekaterinburg (Russia),0.294,0,0.294
+Luhansk (Ukraine),Krasnoyarsk (Russia),0.294,0,0.294
+Irkutsk (Russia),Simferopol (Russia),0.294,0,0.294
+Yekaterinburg (Russia),Saratov (Russia),0.293,0,0.293
+Sevastopol (Russia),Khabarovsk (Russia),0.292,0,0.292
+Rostov-on-Don (Russia),Simferopol (Russia),0.292,0,0.292
+Krasnoyarsk (Russia),Odesa (Ukraine),0.289,0,0.289
+Tyumen (Russia),Samara (Russia),0.288,0,0.288
+Sevastopol (Russia),Omsk (Russia),0.287,0,0.287
+Krasnodar (Russia),Kazan (Russia),0.287,0,0.287
+Chelyabinsk (Russia),Simferopol (Russia),0.286,0,0.286
+Sevastopol (Russia),Samara (Russia),0.285,0,0.285
+Donetsk (Ukraine),Yekaterinburg (Russia),0.285,0,0.285
+Khabarovsk (Russia),Kazan (Russia),0.285,0,0.285
+Yekaterinburg (Russia),Kherson (Ukraine),0.285,0,0.285
+Moscow (Russia),Luhansk (Ukraine),0.285,0,0.285
+Saratov (Russia),Dnipro (Ukraine),0.284,0,0.284
+Sevastopol (Russia),Lviv (Ukraine),0.284,0,0.284
+Irkutsk (Russia),Vinnytsia (Ukraine),0.283,0,0.283
+Donetsk (Ukraine),Saint Petersburg (Russia),0.283,0,0.283
+Krasnodar (Russia),Poltava (Ukraine),0.269,2,0.283
+Krasnodar (Russia),Zhytomyr (Ukraine),0.209,3,0.282
+Irkutsk (Russia),Lviv (Ukraine),0.282,0,0.282
+Kazan (Russia),Vinnytsia (Ukraine),0.281,0,0.281
+Rostov-on-Don (Russia),Lviv (Ukraine),0.281,0,0.281
+Samara (Russia),Nizhny Novgorod (Russia),0.28,0,0.28
+Yekaterinburg (Russia),Ufa (Russia),0.28,0,0.28
+Moscow (Russia),Minsk (Belarus),0.28,0,0.28
+Chelyabinsk (Russia),Nizhny Novgorod (Russia),0.279,0,0.279
+Luhansk (Ukraine),Volgograd (Russia),0.278,0,0.278
+Kazan (Russia),Novosibirsk (Russia),0.278,0,0.278
+Khabarovsk (Russia),Novosibirsk (Russia),0.278,0,0.278
+Luhansk (Ukraine),Vinnytsia (Ukraine),0.278,0,0.278
+Kherson (Ukraine),Zhytomyr (Ukraine),0.18,3,0.277
+Moscow (Russia),Krasnoyarsk (Russia),0.277,0,0.277
+Zaporizhzhia (Ukraine),Poltava (Ukraine),0.207,-3,0.276
+Yekaterinburg (Russia),Vladivostok (Russia),0.275,0,0.275
+Luhansk (Ukraine),Simferopol (Russia),0.275,0,0.275
+Luhansk (Ukraine),Lviv (Ukraine),0.275,0,0.275
+Luhansk (Ukraine),Poltava (Ukraine),0.212,3,0.274
+Yekaterinburg (Russia),Voronezh (Russia),0.273,0,0.273
+Volgograd (Russia),Samara (Russia),0.273,0,0.273
+Khabarovsk (Russia),Krasnoyarsk (Russia),0.273,0,0.273
+Irkutsk (Russia),Chelyabinsk (Russia),0.272,0,0.272
+Kyiv (Ukraine),Omsk (Russia),0.272,0,0.272
+Krasnoyarsk (Russia),Chelyabinsk (Russia),0.272,0,0.272
+Tyumen (Russia),Perm (Russia),0.271,0,0.271
+Kyiv (Ukraine),Rostov-on-Don (Russia),0.271,0,0.271
+Tyumen (Russia),Simferopol (Russia),0.271,0,0.271
+Khabarovsk (Russia),Saratov (Russia),0.27,0,0.27
+Moscow (Russia),Chelyabinsk (Russia),0.27,0,0.27
+Rostov-on-Don (Russia),Khabarovsk (Russia),0.27,0,0.27
+Saint Petersburg (Russia),Kyiv (Ukraine),0.27,0,0.27
+Khabarovsk (Russia),Vinnytsia (Ukraine),0.27,0,0.27
+Krasnoyarsk (Russia),Novosibirsk (Russia),0.269,0,0.269
+Samara (Russia),Kherson (Ukraine),0.269,0,0.269
+Tyumen (Russia),Krasnoyarsk (Russia),0.269,0,0.269
+Chelyabinsk (Russia),Kherson (Ukraine),0.268,0,0.268
+Kharkiv (Ukraine),Luhansk (Ukraine),0.268,0,0.268
+Vladivostok (Russia),Chelyabinsk (Russia),0.267,0,0.267
+Vladivostok (Russia),Simferopol (Russia),0.267,0,0.267
+Perm (Russia),Simferopol (Russia),0.266,0,0.266
+Luhansk (Ukraine),Samara (Russia),0.265,0,0.265
+Samara (Russia),Ufa (Russia),0.265,0,0.265
+Kazan (Russia),Vladivostok (Russia),0.265,0,0.265
+Sevastopol (Russia),Simferopol (Russia),0.211,1,0.264
+Voronezh (Russia),Dnipro (Ukraine),0.262,0,0.262
+Donetsk (Ukraine),Simferopol (Russia),0.262,0,0.262
+Krasnoyarsk (Russia),Samara (Russia),0.262,0,0.262
+Yekaterinburg (Russia),Omsk (Russia),0.262,0,0.262
+Donetsk (Ukraine),Kyiv (Ukraine),0.262,0,0.262
+Kherson (Ukraine),Poltava (Ukraine),0.235,2,0.262
+Donetsk (Ukraine),Kherson (Ukraine),0.261,0,0.261
+Donetsk (Ukraine),Poltava (Ukraine),0.205,3,0.261
+Luhansk (Ukraine),Odesa (Ukraine),0.26,0,0.26
+Donetsk (Ukraine),Sevastopol (Russia),0.26,0,0.26
+Dnipro (Ukraine),Vinnytsia (Ukraine),0.26,0,0.26
+Kharkiv (Ukraine),Krasnodar (Russia),0.258,0,0.258
+Perm (Russia),Zhytomyr (Ukraine),0.196,3,0.258
+Saint Petersburg (Russia),Kherson (Ukraine),0.258,0,0.258
+Nizhny Novgorod (Russia),Dnipro (Ukraine),0.258,0,0.258
+Kharkiv (Ukraine),Saratov (Russia),0.258,0,0.258
+Ufa (Russia),Dnipro (Ukraine),0.254,0,0.254
+Voronezh (Russia),Chelyabinsk (Russia),0.254,0,0.254
+Rostov-on-Don (Russia),Dnipro (Ukraine),0.254,0,0.254
+Saint Petersburg (Russia),Perm (Russia),0.253,0,0.253
+Kharkiv (Ukraine),Perm (Russia),0.252,0,0.252
+Krasnoyarsk (Russia),Omsk (Russia),0.252,0,0.252
+Saint Petersburg (Russia),Nizhny Novgorod (Russia),0.252,0,0.252
+Samara (Russia),Novosibirsk (Russia),0.251,0,0.251
+Saratov (Russia),Samara (Russia),0.251,0,0.251
+Yekaterinburg (Russia),Volgograd (Russia),0.251,0,0.251
+Vladivostok (Russia),Irkutsk (Russia),0.251,0,0.251
+Kharkiv (Ukraine),Vinnytsia (Ukraine),0.251,0,0.251
+Saint Petersburg (Russia),Samara (Russia),0.25,0,0.25
+Kazan (Russia),Lviv (Ukraine),0.248,0,0.248
+Sevastopol (Russia),Tyumen (Russia),0.248,0,0.248
+Saint Petersburg (Russia),Sevastopol (Russia),0.248,0,0.248
+Kyiv (Ukraine),Vinnytsia (Ukraine),0.246,0,0.246
+Perm (Russia),Poltava (Ukraine),0.22,-2,0.245
+Voronezh (Russia),Samara (Russia),0.244,0,0.244
+Saint Petersburg (Russia),Irkutsk (Russia),0.244,0,0.244
+Dnipro (Ukraine),Lviv (Ukraine),0.243,0,0.243
+Donetsk (Ukraine),Krasnoyarsk (Russia),0.243,0,0.243
+Donetsk (Ukraine),Perm (Russia),0.243,0,0.243
+Kyiv (Ukraine),Saratov (Russia),0.243,0,0.243
+Khabarovsk (Russia),Luhansk (Ukraine),0.243,0,0.243
+Rostov-on-Don (Russia),Vladivostok (Russia),0.243,0,0.243
+Moscow (Russia),Samara (Russia),0.242,0,0.242
+Saint Petersburg (Russia),Krasnoyarsk (Russia),0.242,0,0.242
+Omsk (Russia),Kherson (Ukraine),0.241,0,0.241
+Kazan (Russia),Poltava (Ukraine),0.203,3,0.241
+Moscow (Russia),Kherson (Ukraine),0.215,-1,0.241
+Khabarovsk (Russia),Odesa (Ukraine),0.24,0,0.24
+Kyiv (Ukraine),Irkutsk (Russia),0.239,0,0.239
+Kharkiv (Ukraine),Sevastopol (Russia),0.238,0,0.238
+Saint Petersburg (Russia),Krasnodar (Russia),0.237,0,0.237
+Sevastopol (Russia),Chelyabinsk (Russia),0.237,0,0.237
+Khabarovsk (Russia),Lviv (Ukraine),0.237,0,0.237
+Perm (Russia),Dnipro (Ukraine),0.236,0,0.236
+Moscow (Russia),Khabarovsk (Russia),0.236,0,0.236
+Luhansk (Ukraine),Vladivostok (Russia),0.235,0,0.235
+Minsk (Belarus),Rostov-on-Don (Russia),0.235,0,0.235
+Chelyabinsk (Russia),Ufa (Russia),0.235,0,0.235
+Samara (Russia),Omsk (Russia),0.235,0,0.235
+Krasnoyarsk (Russia),Vinnytsia (Ukraine),0.235,0,0.235
+Luhansk (Ukraine),Novosibirsk (Russia),0.233,0,0.233
+Donetsk (Ukraine),Minsk (Belarus),0.233,0,0.233
+Omsk (Russia),Nizhny Novgorod (Russia),0.232,0,0.232
+Kazan (Russia),Simferopol (Russia),0.232,0,0.232
+Luhansk (Ukraine),Chelyabinsk (Russia),0.232,0,0.232
+Khabarovsk (Russia),Samara (Russia),0.232,0,0.232
+Kazan (Russia),Dnipro (Ukraine),0.23,0,0.23
+Luhansk (Ukraine),Zhytomyr (Ukraine),0.146,3,0.23
+Minsk (Belarus),Mashhad (Iran),0.23,0,0.23
+Minsk (Belarus),Simferopol (Russia),0.23,0,0.23
+Omsk (Russia),Ufa (Russia),0.23,0,0.23
+Sevastopol (Russia),Poltava (Ukraine),0.206,3,0.23
+Tyumen (Russia),Nizhny Novgorod (Russia),0.23,0,0.23
+Moscow (Russia),Vladivostok (Russia),0.229,0,0.229
+Luhansk (Ukraine),Tyumen (Russia),0.229,0,0.229
+Kyiv (Ukraine),Zhytomyr (Ukraine),0.173,3,0.229
+Donetsk (Ukraine),Tyumen (Russia),0.227,0,0.227
+Kyiv (Ukraine),Ufa (Russia),0.227,0,0.227
+Saint Petersburg (Russia),Volgograd (Russia),0.226,0,0.226
+Sevastopol (Russia),Zhytomyr (Ukraine),0.147,3,0.226
+Krasnodar (Russia),Tyumen (Russia),0.226,0,0.226
+Kherson (Ukraine),Simferopol (Russia),0.226,0,0.226
+Kazan (Russia),Zhytomyr (Ukraine),0.143,3,0.226
+Saint Petersburg (Russia),Luhansk (Ukraine),0.225,0,0.225
+Kyiv (Ukraine),Nizhny Novgorod (Russia),0.225,0,0.225
+Moscow (Russia),Simferopol (Russia),0.225,0,0.225
+Sevastopol (Russia),Kyiv (Ukraine),0.224,0,0.224
+Sevastopol (Russia),Dnipro (Ukraine),0.223,0,0.223
+Moscow (Russia),Perm (Russia),0.223,0,0.223
+Yekaterinburg (Russia),Odesa (Ukraine),0.223,0,0.223
+Donetsk (Ukraine),Saratov (Russia),0.223,0,0.223
+Krasnodar (Russia),Rostov-on-Don (Russia),0.222,0,0.222
+Dnipro (Ukraine),Novosibirsk (Russia),0.222,0,0.222
+Kyiv (Ukraine),Krasnoyarsk (Russia),0.222,0,0.222
+Krasnodar (Russia),Simferopol (Russia),0.221,0,0.221
+Krasnoyarsk (Russia),Lviv (Ukraine),0.221,0,0.221
+Chelyabinsk (Russia),Dnipro (Ukraine),0.221,0,0.221
+Chelyabinsk (Russia),Perm (Russia),0.221,0,0.221
+Moscow (Russia),Omsk (Russia),0.219,0,0.219
+Kyiv (Ukraine),Poltava (Ukraine),0.216,3,0.219
+Tyumen (Russia),Kherson (Ukraine),0.219,0,0.219
+Kyiv (Ukraine),Lviv (Ukraine),0.218,0,0.218
+Tyumen (Russia),Omsk (Russia),0.217,0,0.217
+Saint Petersburg (Russia),Minsk (Belarus),0.217,0,0.217
+Donetsk (Ukraine),Zhytomyr (Ukraine),0.139,3,0.217
+Donetsk (Ukraine),Omsk (Russia),0.217,0,0.217
+Rostov-on-Don (Russia),Poltava (Ukraine),0.167,3,0.215
+Kyiv (Ukraine),Odesa (Ukraine),0.214,0,0.214
+Voronezh (Russia),Omsk (Russia),0.213,0,0.213
+Saint Petersburg (Russia),Voronezh (Russia),0.213,0,0.213
+Donetsk (Ukraine),Irkutsk (Russia),0.213,0,0.213
+Donetsk (Ukraine),Chelyabinsk (Russia),0.212,0,0.212
+Kharkiv (Ukraine),Krasnoyarsk (Russia),0.212,0,0.212
+Samara (Russia),Vinnytsia (Ukraine),0.211,0,0.211
+Donetsk (Ukraine),Krasnodar (Russia),0.211,0,0.211
+Saratov (Russia),Poltava (Ukraine),0.184,3,0.211
+Krasnodar (Russia),Yekaterinburg (Russia),0.211,0,0.211
+Saratov (Russia),Chelyabinsk (Russia),0.211,0,0.211
+Sevastopol (Russia),Krasnodar (Russia),0.198,2,0.209
+Krasnodar (Russia),Chelyabinsk (Russia),0.209,0,0.209
+Chelyabinsk (Russia),Odesa (Ukraine),0.209,0,0.209
+Kharkiv (Ukraine),Kyiv (Ukraine),0.208,0,0.208
+Saint Petersburg (Russia),Saratov (Russia),0.207,0,0.207
+Kyiv (Ukraine),Voronezh (Russia),0.207,0,0.207
+Moscow (Russia),Saratov (Russia),0.192,-2,0.206
+Tyumen (Russia),Volgograd (Russia),0.205,0,0.205
+Samara (Russia),Odesa (Ukraine),0.205,0,0.205
+Yekaterinburg (Russia),Samara (Russia),0.204,0,0.204
+Tyumen (Russia),Voronezh (Russia),0.204,0,0.204
+Minsk (Belarus),Perm (Russia),0.204,0,0.204
+Krasnodar (Russia),Krasnoyarsk (Russia),0.204,0,0.204
+Saratov (Russia),Omsk (Russia),0.204,0,0.204
+Volgograd (Russia),Omsk (Russia),0.204,0,0.204
+Krasnoyarsk (Russia),Simferopol (Russia),0.203,0,0.203
+Saint Petersburg (Russia),Poltava (Ukraine),0.172,3,0.203
+Khabarovsk (Russia),Tyumen (Russia),0.203,0,0.203
+Saint Petersburg (Russia),Ufa (Russia),0.202,0,0.202
+Dnipro (Ukraine),Poltava (Ukraine),0.164,3,0.202
+Vladivostok (Russia),Omsk (Russia),0.201,0,0.201
+Rostov-on-Don (Russia),Zhytomyr (Ukraine),0.104,3,0.201
+Vladivostok (Russia),Perm (Russia),0.201,0,0.201
+Samara (Russia),Lviv (Ukraine),0.201,0,0.201
+Omsk (Russia),Simferopol (Russia),0.168,1,0.201

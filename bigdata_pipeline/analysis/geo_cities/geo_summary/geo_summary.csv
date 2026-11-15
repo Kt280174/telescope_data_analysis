@@ -1,0 +1,15 @@
+metric,value,share_of_metadata_channels
+metadata channels,534136,1.0
+with a language in Channel_Language.csv,70741,0.1324
+with a language inferred by theme 2,29537,0.0553
+with only a vote table entry (language chosen here),683,0.0013
+... of which the language was chosen with the timezone,6,0.0
+language found from the title only,161,0.0003
+direct city (channel language),4250,0.008
+direct city (inferred language),1262,0.0024
+direct city (vote language),11,0.0
+direct city (title language),153,0.0003
+city from neighbours,30995,0.058
+"channels with a city, any method",36656,0.0686
+channels with a timezone estimate and a city,22265,0.0417
+... of which city and timezone agree (within 2 h),21641,0.0405
