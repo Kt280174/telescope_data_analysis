@@ -431,6 +431,33 @@ def load_languages(path: str) -> dict[int, str]:
     return dict(zip(ids[ok].astype("int64"), langs[ok]))
 
 
+def load_inferred(path: str | None) -> dict[int, str]:
+    """channel id -> language inferred by the theme 2 neighbour vote (channel_language_inferred.csv)."""
+    if not path or not Path(path).is_file():
+        return {}
+    df = pd.read_csv(path, usecols=["channel_id", "inferred_language"], dtype={"channel_id": "int64"})
+    return dict(zip(df.channel_id.astype("int64"), df.inferred_language.astype(str).str.lower()))
+
+
+def load_votes(path: str | None, min_share: float = 0.2, min_forwards: int = 3) -> dict[int, list[tuple[str, float]]]:
+    """channel id -> candidate languages [(language, share)], best first (channel_language_votes.csv).
+
+    Keeps the languages whose vote share is at least `min_share` (the best one is always kept) and drops
+    channels backed by fewer than `min_forwards` forwards, which say too little.
+    """
+    if not path or not Path(path).is_file():
+        return {}
+    df = pd.read_csv(path, dtype={"channel_id": "int64"}).fillna({"language_2": "", "language_3": ""})
+    df = df[df.neighbour_forwards >= min_forwards]
+    out = {}
+    for r in df.itertuples(index=False):
+        cands = [(getattr(r, f"language_{k}"), float(getattr(r, f"share_{k}"))) for k in (1, 2, 3)]
+        keep = [(str(l).lower(), sh) for i, (l, sh) in enumerate(cands) if l and (i == 0 or sh >= min_share)]
+        if keep:
+            out[int(r.channel_id)] = keep
+    return out
+
+
 def channel_texts(obj: dict) -> dict[str, str]:
     """Raw searchable text fields of one channel JSON (only those that exist)."""
     texts = {"title": obj.get("title") or "", "about": obj.get("about") or obj.get("description") or ""}
@@ -581,7 +608,8 @@ def timezone_check(single: pd.DataFrame, tids: np.ndarray, P: np.ndarray, min_ch
     Channels with a known city and a known UTC offset are pooled per city. If the hours are UTC, the
     daily peak of a city moves with its offset (peak_utc + offset is the same everywhere); if they are
     local time, peak_utc itself is the same everywhere. The test compares the two alignments.
-    Needs cities with at least two different offsets (at least 2 h apart).
+    Needs cities with at least two different offsets (at least 2 h apart). The test compares the spread
+    (in hours) of the local-time peaks under each hypothesis and the slope of the file peak against the offset.
     """
     pos = {int(c): i for i, c in enumerate(tids)}
     rows = []
@@ -598,15 +626,28 @@ def timezone_check(single: pd.DataFrame, tids: np.ndarray, P: np.ndarray, min_ch
     t = pd.DataFrame(rows)
     if len(t) < 2 or t.utc_offset.nunique() < 2 or (t.utc_offset.max() - t.utc_offset.min()) < 2:
         return t, "inconclusive", {"reason": "need cities with offsets at least 2 h apart (>= min_channels channels each)"}
-    w = t.n_channels.to_numpy(float)
+    w = np.sqrt(t.n_channels.to_numpy(float))
+    off = t.utc_offset.to_numpy(float)
+    peak = t.peak_hour_in_file.to_numpy(float)
 
-    def resultant(hours):
-        z = (w * np.exp(2j * np.pi * np.asarray(hours) / 24)).sum() / w.sum()
-        return float(abs(z))
-    r_utc = resultant(t.peak_hour_in_file + t.utc_offset)
-    r_loc = resultant(t.peak_hour_in_file)
-    verdict = "UTC" if r_utc >= r_loc + 0.15 else ("local" if r_loc >= r_utc + 0.15 else "inconclusive")
-    return t, verdict, {"alignment_if_utc": round(r_utc, 3), "alignment_if_local": round(r_loc, 3)}
+    def circ_sd_hours(hours):
+        """Circular standard deviation, in hours, of weighted hours."""
+        r = abs((w * np.exp(2j * np.pi * np.asarray(hours) / 24)).sum() / w.sum())
+        return float(np.sqrt(-2 * np.log(max(r, 1e-9))) * 24 / (2 * np.pi))
+
+    sd_utc, sd_loc = circ_sd_hours(peak + off), circ_sd_hours(peak)
+    mean_pk = np.angle((w * np.exp(2j * np.pi * peak / 24)).sum()) * 24 / (2 * np.pi)
+    dev = (peak - mean_pk + 12) % 24 - 12
+    slope = float(np.polyfit(off, dev, 1, w=w)[0])             # about -1 if the file is UTC, 0 if local time
+    detail = {"spread_hours_if_utc": round(sd_utc, 2), "spread_hours_if_local": round(sd_loc, 2),
+              "slope_peak_vs_offset": round(slope, 2)}
+    if sd_utc <= 1.5 and sd_loc >= 2 * sd_utc and -1.4 <= slope <= -0.6:
+        verdict = "UTC"
+    elif sd_loc <= 1.5 and sd_utc >= 2 * sd_loc and abs(slope) <= 0.4:
+        verdict = "local"
+    else:
+        verdict = "inconclusive"
+    return t, verdict, detail
 
 
 def estimate_offsets(single: pd.DataFrame, tids: np.ndarray, P: np.ndarray, seed: int = 42):
@@ -659,30 +700,40 @@ def estimate_offsets(single: pd.DataFrame, tids: np.ndarray, P: np.ndarray, seed
 
 
 # ----------------------------------------------------------------- direct matching
-def assign_cities(metadata: str, langs: dict[int, str], matcher: Matcher, text_language: bool = True):
-    """Direct matches. Returns (rows, per-language channel counters, stats, channel info).
+def assign_cities(metadata: str, langs: dict[int, str], matcher: Matcher, text_language: bool = True,
+                  inferred: dict[int, str] | None = None, votes: dict | None = None):
+    """Direct matches. Returns (rows, per-language channel counters, per-language city counters, stats, info, held).
 
-    A channel is searched with the language of Channel_Language.csv and, when it has none or
-    nothing was found, with the language its title is written in. `info[cid]` = (language, source).
+    Language of a channel, in order: Channel_Language.csv, the theme 2 inferred language, then (when nothing
+    is found) the language the title is written in. Channels that only have a vote table entry are held back
+    (`held`) because their language is chosen later, with the timezone. `info[cid]` = (language, source).
     """
+    inferred, votes = inferred or {}, votes or {}
     gaz = matcher.languages()
-    rows_out, stats = [], Counter()
+    rows_out, stats, held = [], Counter(), {}
     n_lang, n_city = Counter(), Counter()
     info: dict[int, tuple[str, str]] = {}
     for cid, raw in iter_metadata(metadata):
         stats["metadata_rows"] += 1
-        known = langs.get(cid)
+        known, known_src = langs.get(cid), "channel_language"
+        if known:
+            stats["with_language"] += 1
+        elif cid in inferred:
+            known, known_src = inferred[cid], "inferred"
+            stats["with_inferred_language"] += 1
+        elif cid in votes:
+            held[cid] = raw
+            continue
         text_lang = detect_text_language(" ".join(raw.get(k, "") for k in ("title", "about"))) if text_language else None
         tries = []
         if known:
-            tries.append((known, "channel_language"))
-            stats["with_language"] += 1
+            tries.append((known, known_src))
         if text_lang and text_lang != known:
             tries.append((text_lang, "title_language"))
         label = known or text_lang
         if label:
             n_lang[label] += 1
-            info[cid] = (label, "channel_language" if known else "title_language")
+            info[cid] = (label, known_src if known else "title_language")
         if not known and text_lang:
             stats["language_from_title"] += 1
         norm_texts = {k: norm(v) for k, v in raw.items()}
@@ -690,7 +741,6 @@ def assign_cities(metadata: str, langs: dict[int, str], matcher: Matcher, text_l
         for lang, src in tries:
             if lang not in gaz:
                 continue
-            stats["searched"] += 1
             for field in FIELD_PRIORITY:
                 if field not in norm_texts:
                     continue
@@ -698,7 +748,7 @@ def assign_cities(metadata: str, langs: dict[int, str], matcher: Matcher, text_l
                 if found:
                     for city, country, alias in found:
                         rows_out.append({"channel_id": cid, "language": lang, "language_source": src,
-                                         "country": country, "city": city, "field": field,
+                                         "language_basis": "", "country": country, "city": city, "field": field,
                                          "matched_text": alias, "n_cities": len(found),
                                          "title": raw.get("title", "")})
                     n_city[lang] += 1
@@ -708,7 +758,73 @@ def assign_cities(metadata: str, langs: dict[int, str], matcher: Matcher, text_l
                     break
             if done:
                 break
-    return rows_out, n_lang, n_city, stats, info
+    return rows_out, n_lang, n_city, stats, info, held
+
+
+def resolve_votes(held: dict[int, dict], votes: dict, matcher: Matcher, tz=None, tz_tol: float = 2.0,
+                  min_tz_score: float = 0.3):
+    """Choose the language of channels that only have a vote table entry, then search their cities.
+
+    Every candidate language (best vote first) is searched. If several give a city, the timezone keeps
+    those whose city is within `tz_tol` hours of the channel's estimated offset; among what remains the
+    best-voted language wins. Without a timezone the best-voted language that finds a city wins. A channel
+    with no city still gets a language (for the neighbour vote): the best-voted one whose country has
+    cities in the channel's timezone. Returns (rows, info, stats).
+    """
+    gaz = matcher.languages()
+    lang_offsets = {l: np.array([offset_of(c, ci) for c, ci in matcher.cities[l]], float) for l in gaz}
+    rows_out, info, stats = [], {}, Counter()
+    for cid, raw in held.items():
+        cands = votes[cid]
+        share = dict(cands)
+        norm_texts = {k: norm(v) for k, v in raw.items()}
+        est = tz.get(cid) if tz else None
+        use_tz = est is not None and est[1] >= min_tz_score
+        found: dict[str, tuple[str, list]] = {}
+        for lang, _ in cands:
+            if lang not in gaz:
+                continue
+            for field in FIELD_PRIORITY:
+                if field in norm_texts:
+                    f = matcher.find(lang, norm_texts[field])
+                    if f:
+                        found[lang] = (field, f)
+                        break
+        chosen, basis = None, ""
+        if found:
+            opts = list(found)
+            if use_tz:
+                ok = [l for l in opts if any(circ_dist(offset_of(c, ci), est[0]) <= tz_tol for ci, c, _ in found[l][1])]
+                if ok:
+                    chosen = max(ok, key=lambda l: share[l])
+                    basis = "timezone" if len(ok) < len(opts) else "share"
+                    if len(ok) > 1:
+                        basis = "timezone+share"
+            else:
+                chosen = max(opts, key=lambda l: share[l])
+                basis = "share" if len(opts) > 1 else "only candidate"
+        if chosen:
+            field, f = found[chosen]
+            for city, country, alias in f:
+                rows_out.append({"channel_id": cid, "language": chosen, "language_source": "votes",
+                                 "language_basis": basis, "country": country, "city": city, "field": field,
+                                 "matched_text": alias, "n_cities": len(f), "title": raw.get("title", "")})
+            info[cid] = (chosen, "votes")
+            stats["direct_votes"] += 1
+            stats["matched_channels"] += 1
+            if "timezone" in basis:
+                stats["votes_language_by_timezone"] += 1
+            continue
+        # no usable city: still choose a language for the neighbour vote
+        pick = cands[0][0]
+        if use_tz:
+            cons = [l for l, _ in cands if l in lang_offsets and (circ_dist(lang_offsets[l], est[0]) <= tz_tol).any()]
+            if cons:
+                pick = cons[0]
+                stats["votes_language_by_timezone"] += 1
+        info[cid] = (pick, "votes")
+    stats["votes_channels"] = len(held)
+    return rows_out, info, stats
 
 
 # ----------------------------------------------------------------- neighbour vote
@@ -806,15 +922,14 @@ def build_tables(cc, info, inferred, n_lang, n_city, matcher, seed=42, tz=None):
     """channel_geo (final), city_coverage, language_coverage, validation_sample."""
     cc = cc.copy()
     first = cc.sort_values(["channel_id", "n_cities"]).drop_duplicates("channel_id")
-    geo = first[["channel_id", "language", "language_source", "country", "city", "field", "matched_text",
-                 "n_cities"]].rename(columns={"field": "evidence", "language_source": "language_origin"})
-    geo["method"] = "direct_" + geo.language_origin.map({"channel_language": "channel_language",
-                                                         "title_language": "title_language"})
+    geo = first[["channel_id", "language", "language_source", "language_basis", "country", "city", "field",
+                 "matched_text", "n_cities"]].rename(columns={"field": "evidence", "language_source": "language_origin"})
+    geo["method"] = "direct_" + geo.language_origin
     geo["confidence"] = np.where(geo.n_cities == 1, 1.0, round(1.0 / geo.n_cities, 3))
     if inferred is not None and len(inferred):
         inf = inferred.assign(language=inferred.channel_id.map(lambda c: info.get(int(c), ("", ""))[0]),
                               language_origin=inferred.channel_id.map(lambda c: info.get(int(c), ("", ""))[1]),
-                              evidence="neighbour vote", matched_text="", n_cities=1, method="neighbours",
+                              evidence="neighbour vote", matched_text="", n_cities=1, method="neighbours", language_basis="",
                               confidence=inferred.vote_share)
         geo = pd.concat([geo, inf[geo.columns.tolist()]], ignore_index=True)
     if tz is not None:
@@ -843,6 +958,15 @@ def build_tables(cc, info, inferred, n_lang, n_city, matcher, seed=42, tz=None):
     return geo, cov, lc, sample
 
 
+def city_totals(cov: pd.DataFrame) -> pd.DataFrame:
+    """One row per city (country + city), all languages and methods together, with the split by method."""
+    if not len(cov):
+        return pd.DataFrame(columns=["country", "city", "n_channels"])
+    t = cov.pivot_table(index=["country", "city"], columns="method", values="n_channels", aggfunc="sum", fill_value=0)
+    t.insert(0, "n_channels", t.sum(axis=1))
+    return t.reset_index().sort_values("n_channels", ascending=False).reset_index(drop=True)
+
+
 def write_table(out: Path, name: str, df: pd.DataFrame) -> None:
     d = out / name
     d.mkdir(parents=True, exist_ok=True)
@@ -861,10 +985,12 @@ def charts(figdir: Path, cov: pd.DataFrame, lc: pd.DataFrame, summary: pd.DataFr
         ax.set_xlabel("% of channels with a city (any method)")
         ax.set_title("City coverage by language (25 largest languages with a gazetteer)")
         fig.tight_layout(); fig.savefig(figdir / "city_coverage_by_language.png", dpi=150); plt.close(fig)
-    c = cov.groupby(["city", "language"], as_index=False).n_channels.sum().sort_values("n_channels", ascending=False).head(30).iloc[::-1]
+    c = city_totals(cov).head(30).iloc[::-1]
     if len(c):
+        dup = c.city.duplicated(keep=False)                       # add the country only when a name is ambiguous
+        labels = [f"{a} ({b})" if d else a for a, b, d in zip(c.city, c.country, dup)]
         fig, ax = plt.subplots(figsize=(8, 0.32 * len(c) + 1.5))
-        ax.barh([f"{a} ({b})" for a, b in zip(c.city, c.language)], c.n_channels, color="#e45756")
+        ax.barh(labels, c.n_channels, color="#e45756")
         ax.set_xlabel("channels"); ax.set_title("30 cities with the most channels")
         fig.tight_layout(); fig.savefig(figdir / "top_cities.png", dpi=150); plt.close(fig)
     m = cov.groupby("method").n_channels.sum()
@@ -877,7 +1003,15 @@ def charts(figdir: Path, cov: pd.DataFrame, lc: pd.DataFrame, summary: pd.DataFr
 
 README = """# Theme 4, step 1 - city of each channel
 
+Language of a channel, in order: Channel_Language.csv, then the language inferred by theme 2
+(channel_language_inferred), then the candidate languages of channel_language_votes, then the language the
+title is written in.
+
 Methods (field `method` in channel_geo)
+- direct_inferred: same search with the language inferred by theme 2.
+- direct_votes: channels that only have vote candidates (e.g. 55 % ru, 40 % uk). Every candidate language
+  with at least 20 % of the votes is searched. If several find a city, `language_basis` tells how one was
+  chosen: timezone (only its city fits the channel's estimated UTC offset), timezone+share, share, only candidate.
 - direct_channel_language: a city of the channel's language (Channel_Language.csv) is named in its
   title, then description, then username. The first field with a match decides.
 - direct_title_language: same search, but with the language the title is written in (script and
@@ -889,7 +1023,8 @@ Tables
 - channel_geo: final table, one row per channel with a city; `confidence` is 1 for a single direct
   match, 1/n when n cities were found, and the vote share for neighbours.
 - channel_city: direct matches, one row per (channel, city). channel_city_inferred: neighbour votes.
-- city_coverage, language_coverage (share of channels with a city per language), geo_summary.
+- city_coverage (per language and method), city_totals (one row per city, all languages and methods),
+  language_coverage (share of channels with a city per language), geo_summary.
 - validation_sample: up to 70 random single-city channels per method, to check by hand
   (fill `correct` with 1/0; precision of a method = mean of `correct`).
 
@@ -907,12 +1042,20 @@ multi-country languages (en, es, pt, fr, ar) get cities from several countries.
 """
 
 
+COLS = ["channel_id", "language", "language_source", "language_basis", "country", "city", "field",
+        "matched_text", "n_cities", "title"]
+
+
 def run(args) -> dict:
     matcher = Matcher(load_gazetteer(args.gazetteer))
     langs = load_languages(args.languages)
-    rows_out, n_lang, n_city, stats, info = assign_cities(args.metadata, langs, matcher, not args.no_text_language)
-    cc = pd.DataFrame(rows_out, columns=["channel_id", "language", "language_source", "country", "city", "field",
-                                         "matched_text", "n_cities", "title"])
+    inferred_langs = load_inferred(getattr(args, "inferred", None))
+    votes = load_votes(getattr(args, "votes", None), getattr(args, "votes_min_share", 0.2),
+                       getattr(args, "votes_min_forwards", 3))
+    print(f"languages: {len(langs):,} detected, {len(inferred_langs):,} inferred, {len(votes):,} channels with votes")
+    rows_out, n_lang, n_city, stats, info, held = assign_cities(
+        args.metadata, langs, matcher, not args.no_text_language, inferred_langs, votes)
+    cc = pd.DataFrame(rows_out, columns=COLS)
     single = cc[cc.n_cities == 1].drop_duplicates("channel_id")
     # ---- step 0: are the hours of Temporal_Channel_Metadata UTC? If not (or unclear), the timezone step is skipped
     tz, tz_table, tz_verdict, tz_detail = None, None, "not run", {}
@@ -925,6 +1068,18 @@ def run(args) -> dict:
             tz = estimate_offsets(single, tids, P)
             tz = tz or None
         print(f"timezone check: {tz_verdict} {tz_detail}" + ("" if tz else "  -> timezone step skipped"))
+    # ---- channels that only have votes: choose their language (with the timezone when available), then search
+    if held:
+        rows_v, info_v, stats_v = resolve_votes(held, votes, matcher, tz, args.tz_tol)
+        info.update(info_v)
+        stats.update(stats_v)
+        for lang, _ in info_v.values():
+            n_lang[lang] += 1
+        cv = pd.DataFrame(rows_v, columns=COLS)
+        for cid_, lang_ in cv.drop_duplicates("channel_id")[["channel_id", "language"]].itertuples(index=False):
+            n_city[lang_] += 1
+        cc = pd.concat([cc, cv], ignore_index=True)
+        single = cc[cc.n_cities == 1].drop_duplicates("channel_id")
     acc, inferred = None, None
     if args.gold and len(cc):
         from community_detection_v2 import build_net, load_edges
@@ -943,8 +1098,13 @@ def run(args) -> dict:
     rows_s = [
         ("metadata channels", stats.get("metadata_rows", 0)),
         ("with a language in Channel_Language.csv", stats.get("with_language", 0)),
+        ("with a language inferred by theme 2", stats.get("with_inferred_language", 0)),
+        ("with only a vote table entry (language chosen here)", stats.get("votes_channels", 0)),
+        ("... of which the language was chosen with the timezone", stats.get("votes_language_by_timezone", 0)),
         ("language found from the title only", stats.get("language_from_title", 0)),
         ("direct city (channel language)", stats.get("direct_channel_language", 0)),
+        ("direct city (inferred language)", stats.get("direct_inferred", 0)),
+        ("direct city (vote language)", stats.get("direct_votes", 0)),
         ("direct city (title language)", stats.get("direct_title_language", 0)),
         ("city from neighbours", 0 if inferred is None else len(inferred)),
         ("channels with a city, any method", geo.channel_id.nunique()),
@@ -956,7 +1116,8 @@ def run(args) -> dict:
     summary = pd.DataFrame(rows_s, columns=["metric", "value"])
     summary["share_of_metadata_channels"] = (summary.value / max(stats.get("metadata_rows", 1), 1)).round(4)
     out = Path(args.out)
-    tables = [("channel_geo", geo), ("channel_city", cc), ("city_coverage", cov), ("language_coverage", lc),
+    tables = [("channel_geo", geo), ("channel_city", cc), ("city_coverage", cov), ("city_totals", city_totals(cov)),
+              ("language_coverage", lc),
               ("geo_summary", summary), ("validation_sample", sample)]
     if inferred is not None:
         tables += [("channel_city_inferred", inferred), ("propagation_accuracy", acc)]
@@ -1033,9 +1194,13 @@ def selftest() -> None:
     for name in ("channel_geo", "channel_city", "channel_city_inferred", "propagation_accuracy", "city_coverage",
                  "language_coverage", "geo_summary", "validation_sample"):
         assert (t / "out" / name / f"{name}.csv").exists(), name
+    ct = city_totals(res["coverage"])
+    assert not ct.duplicated(["country", "city"]).any(), "a city must appear once"
+    assert (t / "out" / "city_totals" / "city_totals.csv").exists()
     for png in ("city_coverage_by_language", "top_cities", "coverage_by_method"):
         assert (t / "fig" / f"{png}.png").exists(), png
     selftest_timezone()
+    selftest_votes()
     print("selftest OK")
 
 
@@ -1113,6 +1278,67 @@ def selftest_timezone() -> None:
     print("timezone selftest OK")
 
 
+def selftest_votes() -> None:
+    """Inferred languages and vote candidates, with the timezone choosing among candidate languages."""
+    t = Path(tempfile.mkdtemp())
+    meta, langs, offs, edges, grp = {}, {}, {}, [], {}
+    cid = 1000
+    for title, off in {"Новости Москвы": 3, "Владивосток новости": 10, "Екатеринбург сегодня": 5}.items():
+        ids = list(range(cid, cid + 40)); cid += 40
+        grp[title] = ids
+        for i in ids:
+            meta[i], langs[i], offs[i] = title, "ru", off
+        edges += [(a, b, "2024-01", 3) for a, b in zip(ids[:-1], ids[1:])]
+    inf_ids = list(range(6100, 6105)); A = list(range(6000, 6010)); B = list(range(6010, 6020))
+    C = list(range(6020, 6025)); D = list(range(6030, 6035)); E = [6040]
+    for i in inf_ids: meta[i] = "Новости Москвы"
+    for i in A + B + C + E: meta[i] = "Омск Київ"
+    for i in D: meta[i] = f"Канал {i}"
+    offs.update({**{i: 6 for i in A}, **{i: 2 for i in B}, **{i: 10 for i in D}})     # C and E have no profile
+    rng = np.random.default_rng(2)
+    for i in D:
+        for j in list(rng.choice(grp["Новости Москвы"], 2, replace=False)) + list(rng.choice(grp["Владивосток новости"], 2, replace=False)):
+            edges.append((int(i), int(j), "2024-01", 5))
+    with open(t / "meta.csv", "w", newline="", encoding="utf-8") as f:
+        w = csv.writer(f); w.writerow(["id", "updated_utc", "data"])
+        for i, title in meta.items():
+            w.writerow([i, 0, json.dumps({"title": title}, ensure_ascii=False)])
+    pd.DataFrame({"File Names": [f"{i}.jsonl" for i in langs], "detected_language": list(langs.values())}).to_csv(
+        t / "lang.csv", sep="\t")
+    pd.DataFrame({"channel_id": inf_ids, "inferred_language": "ru", "vote_share": 0.9, "neighbour_forwards": 50,
+                  "source": "inferred"}).to_csv(t / "inferred.csv", index=False)
+    vrows = [(i, 2, "ru", 0.50, "uk", 0.45, "", 0.0, 0.05, 40) for i in A + B + C + E[:0]]
+    vrows += [(i, 2, "uk", 0.55, "ru", 0.40, "", 0.0, 0.05, 40) for i in D]
+    vrows += [(i, 2, "ru", 0.50, "uk", 0.45, "", 0.0, 0.05, 2) for i in E]                # too few forwards: ignored
+    pd.DataFrame(vrows, columns=["channel_id", "n_voting_languages", "language_1", "share_1", "language_2", "share_2",
+                                 "language_3", "share_3", "share_other", "neighbour_forwards"]).to_csv(t / "votes.csv", index=False)
+    (t / "gold" / "edges_monthly_csv").mkdir(parents=True)
+    pd.DataFrame(edges, columns=["origin_channel", "dest_channel", "month", "n_forwards"]).to_csv(
+        t / "gold" / "edges_monthly_csv" / "p.csv", index=False)
+    _profiles(offs, True).to_csv(t / "temporal.csv", index=False)
+    a = argparse.Namespace(metadata=str(t / "meta.csv"), languages=str(t / "lang.csv"), gazetteer=None,
+                           gold=str(t / "gold"), out=str(t / "out"), figdir=str(t / "fig"), min_class=5, min_vote=0.6,
+                           no_text_language=False, temporal=str(t / "temporal.csv"), timezone_mode="auto", min_posts=100,
+                           tz_tol=2.0, inferred=str(t / "inferred.csv"), votes=str(t / "votes.csv"),
+                           votes_min_share=0.2, votes_min_forwards=3)
+    r = run(a)
+    assert r["tz_verdict"] == "UTC"
+    geo = r["geo"].set_index("channel_id")
+    assert (geo.reindex(inf_ids).method == "direct_inferred").all() and (geo.reindex(inf_ids).city == "Moscow").all()
+    ga, gb, gc = geo.reindex(A), geo.reindex(B), geo.reindex(C)
+    assert (ga.city == "Omsk").all() and (ga.method == "direct_votes").all() and (ga.language_basis == "timezone").all()
+    assert (gb.city == "Kyiv").all() and (gb.language == "uk").all() and (gb.language_basis == "timezone").all()
+    assert (gc.city == "Omsk").all() and (gc.language_basis == "share").all()           # no timezone: best-voted language
+    gd = geo.reindex(D)
+    assert (gd.method == "neighbours").all() and (gd.city == "Vladivostok").all() and (gd.language == "ru").all()
+    ge = geo.loc[E[0]]
+    assert ge.method == "direct_title_language" and ge.city == "Kyiv"                    # vote entry ignored: too few forwards
+    sm = r["summary"].set_index("metric").value
+    assert sm["with only a vote table entry (language chosen here)"] == len(A + B + C + D)
+    assert sm["... of which the language was chosen with the timezone"] >= len(A + B + D)
+    print("votes selftest OK")
+
+
 def main() -> None:
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--metadata", default="telescope_files/Source_Channel_Metadata.csv")
@@ -1120,6 +1346,12 @@ def main() -> None:
     ap.add_argument("--gold", default=None, help="gold folder; enables the neighbour vote")
     ap.add_argument("--gazetteer", default=None, help="CSV (lang,country,city,aliases) replacing the built-in list")
     ap.add_argument("--export-gazetteer", default=None, help="write the built-in gazetteer to this CSV and exit")
+    ap.add_argument("--inferred", default="bigdata_pipeline/analysis/language_v2/channel_language_inferred/channel_language_inferred.csv",
+                    help="languages inferred by theme 2 (used if the file exists)")
+    ap.add_argument("--votes", default="bigdata_pipeline/analysis/language_v2/channel_language_votes/channel_language_votes.csv",
+                    help="candidate languages of channels without a clear language (used if the file exists)")
+    ap.add_argument("--votes-min-share", type=float, default=0.2, help="min vote share for a candidate language")
+    ap.add_argument("--votes-min-forwards", type=int, default=3, help="min neighbour forwards behind a vote entry")
     ap.add_argument("--no-text-language", action="store_true", help="do not use the language the title is written in")
     ap.add_argument("--temporal", default="telescope_files/Temporal_Channel_Metadata.csv",
                     help="24-hour activity per channel; used only if its hours are UTC")

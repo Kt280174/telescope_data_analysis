@@ -1,6 +1,14 @@
 # Theme 4, step 1 - city of each channel
 
+Language of a channel, in order: Channel_Language.csv, then the language inferred by theme 2
+(channel_language_inferred), then the candidate languages of channel_language_votes, then the language the
+title is written in.
+
 Methods (field `method` in channel_geo)
+- direct_inferred: same search with the language inferred by theme 2.
+- direct_votes: channels that only have vote candidates (e.g. 55 % ru, 40 % uk). Every candidate language
+  with at least 20 % of the votes is searched. If several find a city, `language_basis` tells how one was
+  chosen: timezone (only its city fits the channel's estimated UTC offset), timezone+share, share, only candidate.
 - direct_channel_language: a city of the channel's language (Channel_Language.csv) is named in its
   title, then description, then username. The first field with a match decides.
 - direct_title_language: same search, but with the language the title is written in (script and
@@ -12,7 +20,8 @@ Tables
 - channel_geo: final table, one row per channel with a city; `confidence` is 1 for a single direct
   match, 1/n when n cities were found, and the vote share for neighbours.
 - channel_city: direct matches, one row per (channel, city). channel_city_inferred: neighbour votes.
-- city_coverage, language_coverage (share of channels with a city per language), geo_summary.
+- city_coverage (per language and method), city_totals (one row per city, all languages and methods),
+  language_coverage (share of channels with a city per language), geo_summary.
 - validation_sample: up to 70 random single-city channels per method, to check by hand
   (fill `correct` with 1/0; precision of a method = mean of `correct`).
 
