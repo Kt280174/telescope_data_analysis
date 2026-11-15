@@ -1,0 +1,224 @@
+sync_id,city_key,onset_utc,hours_after_first
+1,Moscow (Russia),2017-09-10 03:00:00,0.0
+2,Volgograd (Russia),2018-03-17 17:00:00,0.0
+2,Khabarovsk (Russia),2018-03-18 00:00:00,7.0
+2,Moscow (Russia),2018-03-18 00:00:00,7.0
+2,Sevastopol (Russia),2018-03-18 04:00:00,11.0
+2,Tyumen (Russia),2018-03-18 04:00:00,11.0
+2,Saint Petersburg (Russia),2018-03-18 05:00:00,12.0
+2,Rostov-on-Don (Russia),2018-03-18 06:00:00,13.0
+2,Kazan (Russia),2018-03-18 13:00:00,20.0
+3,Moscow (Russia),2018-09-09 02:00:00,0.0
+3,Tyumen (Russia),2018-09-09 03:00:00,1.0
+3,Volgograd (Russia),2018-09-09 10:00:00,8.0
+3,Nizhny Novgorod (Russia),2018-09-09 11:00:00,9.0
+3,Saint Petersburg (Russia),2018-09-09 11:00:00,9.0
+4,Chelyabinsk (Russia),2019-09-07 05:00:00,0.0
+4,Khabarovsk (Russia),2019-09-07 20:00:00,15.0
+4,Saint Petersburg (Russia),2019-09-07 23:00:00,18.0
+4,Moscow (Russia),2019-09-08 02:00:00,21.0
+4,Irkutsk (Russia),2019-09-08 03:00:00,22.0
+4,Volgograd (Russia),2019-09-08 04:00:00,23.0
+4,Tyumen (Russia),2019-09-08 05:00:00,24.0
+4,Kazan (Russia),2019-09-08 06:00:00,25.0
+5,Minsk (Belarus),2020-08-09 05:00:00,0.0
+5,Chelyabinsk (Russia),2020-08-09 07:00:00,2.0
+5,Luhansk (Ukraine),2020-08-09 18:00:00,13.0
+5,Moscow (Russia),2020-08-09 19:00:00,14.0
+6,Minsk (Belarus),2020-08-22 12:00:00,0.0
+6,Simferopol (Russia),2020-08-22 13:00:00,1.0
+7,Krasnodar (Russia),2020-09-12 19:00:00,0.0
+7,Irkutsk (Russia),2020-09-13 03:00:00,8.0
+7,Chelyabinsk (Russia),2020-09-13 05:00:00,10.0
+9,Chelyabinsk (Russia),2021-01-17 13:00:00,0.0
+9,Irkutsk (Russia),2021-01-17 14:00:00,1.0
+9,Yekaterinburg (Russia),2021-01-17 15:00:00,2.0
+10,Volgograd (Russia),2021-01-22 15:00:00,0.0
+10,Yekaterinburg (Russia),2021-01-23 03:00:00,12.0
+10,Moscow (Russia),2021-01-23 04:00:00,13.0
+10,Saint Petersburg (Russia),2021-01-23 04:00:00,13.0
+10,Krasnoyarsk (Russia),2021-01-23 06:00:00,15.0
+10,Ufa (Russia),2021-01-23 07:00:00,16.0
+10,Chelyabinsk (Russia),2021-01-23 08:00:00,17.0
+10,Kazan (Russia),2021-01-23 09:00:00,18.0
+10,Rostov-on-Don (Russia),2021-01-23 10:00:00,19.0
+11,Rostov-on-Don (Russia),2021-01-31 01:00:00,0.0
+11,Moscow (Russia),2021-01-31 02:00:00,1.0
+11,Saint Petersburg (Russia),2021-01-31 02:00:00,1.0
+11,Chelyabinsk (Russia),2021-01-31 05:00:00,4.0
+11,Kazan (Russia),2021-01-31 05:00:00,4.0
+11,Yekaterinburg (Russia),2021-01-31 05:00:00,4.0
+11,Saratov (Russia),2021-01-31 07:00:00,6.0
+11,Voronezh (Russia),2021-01-31 08:00:00,7.0
+11,Volgograd (Russia),2021-01-31 09:00:00,8.0
+12,Volgograd (Russia),2021-04-21 09:00:00,0.0
+12,Yekaterinburg (Russia),2021-04-21 09:00:00,0.0
+12,Ufa (Russia),2021-04-21 13:00:00,4.0
+12,Saint Petersburg (Russia),2021-04-21 16:00:00,7.0
+13,Vladivostok (Russia),2021-05-08 23:00:00,0.0
+13,Minsk (Belarus),2021-05-09 04:00:00,5.0
+13,Simferopol (Russia),2021-05-09 04:00:00,5.0
+13,Yekaterinburg (Russia),2021-05-09 04:00:00,5.0
+13,Tyumen (Russia),2021-05-09 05:00:00,6.0
+13,Volgograd (Russia),2021-05-09 05:00:00,6.0
+13,Voronezh (Russia),2021-05-09 05:00:00,6.0
+13,Donetsk (Ukraine),2021-05-09 07:00:00,8.0
+13,Luhansk (Ukraine),2021-05-09 07:00:00,8.0
+14,Tehran (Iran),2021-06-18 01:00:00,0.0
+14,Mashhad (Iran),2021-06-18 02:00:00,1.0
+14,Sevastopol (Russia),2021-06-18 09:00:00,8.0
+15,Donetsk (Ukraine),2021-09-17 02:00:00,0.0
+15,Chelyabinsk (Russia),2021-09-17 03:00:00,1.0
+15,Vladivostok (Russia),2021-09-17 13:00:00,11.0
+15,Irkutsk (Russia),2021-09-17 14:00:00,12.0
+15,Kazan (Russia),2021-09-17 20:00:00,18.0
+15,Khabarovsk (Russia),2021-09-17 21:00:00,19.0
+15,Moscow (Russia),2021-09-17 23:00:00,21.0
+15,Tyumen (Russia),2021-09-18 13:00:00,35.0
+15,Sevastopol (Russia),2021-09-18 14:00:00,36.0
+15,Volgograd (Russia),2021-09-18 14:00:00,36.0
+15,Simferopol (Russia),2021-09-19 05:00:00,51.0
+15,Krasnoyarsk (Russia),2021-09-19 14:00:00,60.0
+15,Nizhny Novgorod (Russia),2021-09-19 18:00:00,64.0
+15,Yekaterinburg (Russia),2021-09-19 18:00:00,64.0
+16,Luhansk (Ukraine),2022-02-18 03:00:00,0.0
+16,Donetsk (Ukraine),2022-02-18 15:00:00,12.0
+16,Rostov-on-Don (Russia),2022-02-18 20:00:00,17.0
+16,Minsk (Belarus),2022-02-18 21:00:00,18.0
+16,Moscow (Russia),2022-02-18 21:00:00,18.0
+17,Donetsk (Ukraine),2022-02-23 00:00:00,0.0
+17,Luhansk (Ukraine),2022-02-23 04:00:00,4.0
+17,Odesa (Ukraine),2022-02-23 07:00:00,7.0
+17,Lviv (Ukraine),2022-02-23 18:00:00,18.0
+17,Kazan (Russia),2022-02-23 21:00:00,21.0
+17,Kharkiv (Ukraine),2022-02-23 21:00:00,21.0
+17,Minsk (Belarus),2022-02-23 21:00:00,21.0
+17,Moscow (Russia),2022-02-23 21:00:00,21.0
+17,Rostov-on-Don (Russia),2022-02-23 21:00:00,21.0
+17,Saratov (Russia),2022-02-23 21:00:00,21.0
+17,Chelyabinsk (Russia),2022-02-23 23:00:00,23.0
+17,Sevastopol (Russia),2022-02-24 02:00:00,26.0
+17,Kherson (Ukraine),2022-02-24 03:00:00,27.0
+17,Krasnodar (Russia),2022-02-24 03:00:00,27.0
+17,Kyiv (Ukraine),2022-02-24 03:00:00,27.0
+17,Omsk (Russia),2022-02-24 03:00:00,27.0
+17,Saint Petersburg (Russia),2022-02-24 03:00:00,27.0
+17,Simferopol (Russia),2022-02-24 04:00:00,28.0
+17,Yekaterinburg (Russia),2022-02-24 04:00:00,28.0
+17,Vinnytsia (Ukraine),2022-02-24 05:00:00,29.0
+17,Poltava (Ukraine),2022-02-24 10:00:00,34.0
+17,Krasnoyarsk (Russia),2022-02-24 14:00:00,38.0
+17,Samara (Russia),2022-02-24 19:00:00,43.0
+17,Volgograd (Russia),2022-02-24 19:00:00,43.0
+17,Perm (Russia),2022-02-25 06:00:00,54.0
+17,Irkutsk (Russia),2022-02-25 12:00:00,60.0
+17,Nizhny Novgorod (Russia),2022-02-26 11:00:00,83.0
+17,Tyumen (Russia),2022-02-26 21:00:00,93.0
+18,Luhansk (Ukraine),2022-06-12 00:00:00,0.0
+18,Simferopol (Russia),2022-06-12 08:00:00,8.0
+18,Sao Paulo (Brazil),2022-06-12 16:00:00,16.0
+19,Krasnodar (Russia),2022-09-10 19:00:00,0.0
+20,Ufa (Russia),2022-09-23 16:00:00,0.0
+20,Sydney (Australia),2022-09-24 06:00:00,14.0
+20,Luhansk (Ukraine),2022-09-24 14:00:00,22.0
+20,Krasnoyarsk (Russia),2022-09-25 16:00:00,48.0
+21,Omsk (Russia),2022-09-30 01:00:00,0.0
+22,Sevastopol (Russia),2022-10-08 03:00:00,0.0
+22,Simferopol (Russia),2022-10-08 04:00:00,1.0
+22,Rostov-on-Don (Russia),2022-10-09 01:00:00,22.0
+22,Kharkiv (Ukraine),2022-10-10 06:00:00,51.0
+22,Kyiv (Ukraine),2022-10-10 06:00:00,51.0
+22,Donetsk (Ukraine),2022-10-10 07:00:00,52.0
+23,Kyiv (Ukraine),2022-11-05 00:00:00,0.0
+23,Voronezh (Russia),2022-11-05 22:00:00,22.0
+24,Nizhny Novgorod (Russia),2023-05-06 09:00:00,0.0
+24,Yekaterinburg (Russia),2023-05-06 18:00:00,9.0
+24,Ufa (Russia),2023-05-07 11:00:00,26.0
+24,Tyumen (Russia),2023-05-07 14:00:00,29.0
+24,Voronezh (Russia),2023-05-07 17:00:00,32.0
+24,Chelyabinsk (Russia),2023-05-07 19:00:00,34.0
+24,Volgograd (Russia),2023-05-07 19:00:00,34.0
+24,Novosibirsk (Russia),2023-05-08 16:00:00,55.0
+25,Yekaterinburg (Russia),2023-06-23 16:00:00,0.0
+25,Chelyabinsk (Russia),2023-06-23 18:00:00,2.0
+25,Lviv (Ukraine),2023-06-23 18:00:00,2.0
+25,Kyiv (Ukraine),2023-06-23 19:00:00,3.0
+25,Omsk (Russia),2023-06-23 19:00:00,3.0
+25,Moscow (Russia),2023-06-23 20:00:00,4.0
+25,Rostov-on-Don (Russia),2023-06-23 20:00:00,4.0
+25,Donetsk (Ukraine),2023-06-23 21:00:00,5.0
+25,Kazan (Russia),2023-06-23 21:00:00,5.0
+25,Kharkiv (Ukraine),2023-06-23 21:00:00,5.0
+25,Krasnodar (Russia),2023-06-23 21:00:00,5.0
+25,Luhansk (Ukraine),2023-06-23 21:00:00,5.0
+25,Minsk (Belarus),2023-06-23 21:00:00,5.0
+25,Saint Petersburg (Russia),2023-06-23 21:00:00,5.0
+25,Samara (Russia),2023-06-23 21:00:00,5.0
+25,Sevastopol (Russia),2023-06-23 21:00:00,5.0
+25,Tyumen (Russia),2023-06-23 21:00:00,5.0
+25,Nizhny Novgorod (Russia),2023-06-24 00:00:00,8.0
+25,Voronezh (Russia),2023-06-24 02:00:00,10.0
+25,Volgograd (Russia),2023-06-24 05:00:00,13.0
+25,Novosibirsk (Russia),2023-06-24 12:00:00,20.0
+25,Vladivostok (Russia),2023-06-24 13:00:00,21.0
+25,Irkutsk (Russia),2023-06-24 17:00:00,25.0
+26,Vladivostok (Russia),2023-08-11 12:00:00,0.0
+26,Nizhny Novgorod (Russia),2023-08-12 18:00:00,30.0
+26,Yekaterinburg (Russia),2023-08-12 19:00:00,31.0
+27,Sydney (Australia),2023-08-19 11:00:00,0.0
+27,Yekaterinburg (Russia),2023-08-19 15:00:00,4.0
+27,Nizhny Novgorod (Russia),2023-08-19 19:00:00,8.0
+28,Nizhny Novgorod (Russia),2023-08-27 21:00:00,0.0
+29,Nizhny Novgorod (Russia),2023-09-02 20:00:00,0.0
+30,Rivne (Ukraine),2023-09-08 07:00:00,0.0
+30,Ufa (Russia),2023-09-08 17:00:00,10.0
+30,Vladivostok (Russia),2023-09-10 03:00:00,44.0
+30,Irkutsk (Russia),2023-09-10 12:00:00,53.0
+30,Krasnoyarsk (Russia),2023-09-10 15:00:00,56.0
+30,Volgograd (Russia),2023-09-10 17:00:00,58.0
+30,Tyumen (Russia),2023-09-10 19:00:00,60.0
+30,Voronezh (Russia),2023-09-10 22:00:00,63.0
+31,Sydney (Australia),2023-09-23 07:00:00,0.0
+33,Ufa (Russia),2023-10-14 04:00:00,0.0
+33,Omsk (Russia),2023-10-14 17:00:00,13.0
+33,Yekaterinburg (Russia),2023-10-14 22:00:00,18.0
+33,Sydney (Australia),2023-10-15 05:00:00,25.0
+34,Nizhny Novgorod (Russia),2023-11-03 19:00:00,0.0
+34,Simferopol (Russia),2023-11-03 21:00:00,2.0
+34,Sydney (Australia),2023-11-04 07:00:00,12.0
+34,Yekaterinburg (Russia),2023-11-05 17:00:00,46.0
+34,Ufa (Russia),2023-11-05 18:00:00,47.0
+35,Simferopol (Russia),2023-11-18 18:00:00,0.0
+35,Sydney (Australia),2023-11-19 06:00:00,12.0
+36,Sydney (Australia),2023-11-26 05:00:00,0.0
+36,Odesa (Ukraine),2023-11-26 09:00:00,4.0
+36,Simferopol (Russia),2023-11-26 15:00:00,10.0
+36,Sevastopol (Russia),2023-11-26 17:00:00,12.0
+37,Nizhny Novgorod (Russia),2023-12-02 03:00:00,0.0
+37,Sydney (Australia),2023-12-02 04:00:00,1.0
+37,Simferopol (Russia),2023-12-02 19:00:00,16.0
+38,Perm (Russia),2023-12-31 18:00:00,0.0
+38,Luhansk (Ukraine),2023-12-31 21:00:00,3.0
+39,Minsk (Belarus),2024-02-25 04:00:00,0.0
+40,Simferopol (Russia),2024-03-02 16:00:00,0.0
+41,Perm (Russia),2024-03-15 21:00:00,0.0
+41,Simferopol (Russia),2024-03-16 04:00:00,7.0
+41,Irkutsk (Russia),2024-03-16 17:00:00,20.0
+41,Volgograd (Russia),2024-03-16 18:00:00,21.0
+41,Odesa (Ukraine),2024-03-16 21:00:00,24.0
+41,Rostov-on-Don (Russia),2024-03-16 22:00:00,25.0
+41,Voronezh (Russia),2024-03-16 22:00:00,25.0
+41,Krasnoyarsk (Russia),2024-03-17 00:00:00,27.0
+41,Tyumen (Russia),2024-03-17 02:00:00,29.0
+41,Kazan (Russia),2024-03-17 18:00:00,45.0
+41,Nizhny Novgorod (Russia),2024-03-17 18:00:00,45.0
+41,Yekaterinburg (Russia),2024-03-17 18:00:00,45.0
+41,Sevastopol (Russia),2024-03-17 21:00:00,48.0
+42,Chelyabinsk (Russia),2024-03-22 18:00:00,0.0
+42,Nizhny Novgorod (Russia),2024-03-22 18:00:00,0.0
+42,Omsk (Russia),2024-03-22 18:00:00,0.0
+42,Irkutsk (Russia),2024-03-22 19:00:00,1.0
+42,Sevastopol (Russia),2024-03-22 19:00:00,1.0
+43,Moscow (Russia),2024-07-27 00:00:00,0.0
+43,Sydney (Australia),2024-07-28 10:00:00,34.0
+44,Ufa (Russia),2024-08-30 20:00:00,0.0

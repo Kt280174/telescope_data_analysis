@@ -1,0 +1,287 @@
+country,city,lat,lon
+Afghanistan,Herat,34.35,62.20
+Afghanistan,Kabul,34.53,69.17
+Albania,Tirana,41.33,19.82
+Algeria,Algiers,36.75,3.06
+Angola,Luanda,-8.84,13.23
+Argentina,Buenos Aires,-34.60,-58.38
+Armenia,Gyumri,40.79,43.85
+Armenia,Yerevan,40.18,44.51
+Australia,Melbourne,-37.81,144.96
+Australia,Sydney,-33.87,151.21
+Austria,Vienna,48.21,16.37
+Azerbaijan,Baku,40.41,49.87
+Bangladesh,Chittagong,22.36,91.78
+Bangladesh,Dhaka,23.81,90.41
+Belarus,Brest,52.10,23.70
+Belarus,Gomel,52.44,30.98
+Belarus,Minsk,53.90,27.57
+Belarus,Vitebsk,55.19,30.20
+Belgium,Antwerp,51.22,4.40
+Belgium,Brussels,50.85,4.35
+Brazil,Belo Horizonte,-19.92,-43.94
+Brazil,Brasilia,-15.79,-47.88
+Brazil,Curitiba,-25.43,-49.27
+Brazil,Fortaleza,-3.73,-38.53
+Brazil,Porto Alegre,-30.03,-51.23
+Brazil,Rio de Janeiro,-22.91,-43.17
+Brazil,Salvador,-12.97,-38.50
+Brazil,Sao Paulo,-23.55,-46.63
+Bulgaria,Burgas,42.50,27.47
+Bulgaria,Plovdiv,42.14,24.75
+Bulgaria,Sofia,42.70,23.32
+Bulgaria,Varna,43.21,27.91
+Canada,Montreal,45.50,-73.57
+Canada,Toronto,43.65,-79.38
+Chile,Santiago,-33.45,-70.67
+China,Beijing,39.90,116.40
+China,Chengdu,30.57,104.07
+China,Guangzhou,23.13,113.26
+China,Shanghai,31.23,121.47
+China,Shenzhen,22.54,114.06
+China,Wuhan,30.59,114.31
+Colombia,Bogota,4.71,-74.07
+Colombia,Medellin,6.24,-75.58
+Croatia,Rijeka,45.33,14.44
+Croatia,Split,43.51,16.44
+Croatia,Zagreb,45.81,15.98
+Czechia,Brno,49.20,16.61
+Czechia,Olomouc,49.59,17.25
+Czechia,Ostrava,49.82,18.26
+Czechia,Plzen,49.75,13.38
+Czechia,Prague,50.08,14.44
+DR Congo,Kinshasa,-4.44,15.27
+Denmark,Aarhus,56.16,10.20
+Denmark,Copenhagen,55.68,12.57
+Ecuador,Quito,-0.18,-78.47
+Egypt,Alexandria,31.20,29.92
+Egypt,Cairo,30.04,31.24
+Finland,Helsinki,60.17,24.94
+Finland,Tampere,61.50,23.76
+Finland,Turku,60.45,22.27
+France,Bordeaux,44.84,-0.58
+France,Lille,50.63,3.06
+France,Lyon,45.76,4.84
+France,Marseille,43.30,5.37
+France,Nice,43.70,7.27
+France,Paris,48.86,2.35
+France,Toulouse,43.60,1.44
+Georgia,Batumi,41.65,41.64
+Georgia,Tbilisi,41.72,44.79
+Germany,Berlin,52.52,13.40
+Germany,Cologne,50.94,6.96
+Germany,Dresden,51.05,13.74
+Germany,Dusseldorf,51.23,6.78
+Germany,Frankfurt,50.11,8.68
+Germany,Hamburg,53.55,9.99
+Germany,Leipzig,51.34,12.37
+Germany,Munich,48.14,11.58
+Germany,Stuttgart,48.78,9.18
+Greece,Athens,37.98,23.73
+Greece,Thessaloniki,40.64,22.94
+Hungary,Budapest,47.50,19.04
+Hungary,Debrecen,47.53,21.63
+Hungary,Szeged,46.25,20.15
+India,Amritsar,31.63,74.87
+India,Chennai,13.08,80.27
+India,Delhi,28.61,77.21
+India,Hyderabad,17.39,78.49
+India,Jaipur,26.91,75.79
+India,Kolkata,22.57,88.36
+India,Lucknow,26.85,80.95
+India,Ludhiana,30.90,75.86
+India,Mumbai,19.08,72.88
+Indonesia,Bandung,-6.92,107.61
+Indonesia,Jakarta,-6.21,106.85
+Indonesia,Makassar,-5.15,119.43
+Indonesia,Medan,3.59,98.67
+Indonesia,Semarang,-6.97,110.42
+Indonesia,Surabaya,-7.25,112.75
+Iran,Ahvaz,31.32,48.67
+Iran,Isfahan,32.65,51.67
+Iran,Karaj,35.84,50.99
+Iran,Mashhad,36.30,59.60
+Iran,Shiraz,29.59,52.58
+Iran,Tabriz,38.08,46.29
+Iran,Tehran,35.69,51.39
+Iraq,Baghdad,33.31,44.36
+Iraq,Mosul,36.34,43.13
+Ireland,Dublin,53.35,-6.26
+Israel,Beer Sheva,31.25,34.79
+Israel,Haifa,32.79,34.99
+Israel,Jerusalem,31.77,35.21
+Israel,Tel Aviv,32.09,34.78
+Italy,Bologna,44.49,11.34
+Italy,Florence,43.77,11.26
+Italy,Genoa,44.41,8.93
+Italy,Milan,45.46,9.19
+Italy,Naples,40.85,14.27
+Italy,Palermo,38.12,13.36
+Italy,Rome,41.90,12.50
+Italy,Turin,45.07,7.69
+Italy,Venice,45.44,12.32
+Ivory Coast,Abidjan,5.36,-4.01
+Japan,Fukuoka,33.59,130.40
+Japan,Nagoya,35.18,136.91
+Japan,Osaka,34.69,135.50
+Japan,Sapporo,43.06,141.35
+Japan,Tokyo,35.68,139.69
+Japan,Yokohama,35.44,139.64
+Jordan,Amman,31.95,35.93
+Kazakhstan,Almaty,43.24,76.89
+Kazakhstan,Astana,51.17,71.43
+Kazakhstan,Shymkent,42.32,69.59
+Kenya,Nairobi,-1.29,36.82
+Kosovo,Pristina,42.66,21.17
+Lebanon,Beirut,33.89,35.50
+Libya,Tripoli,32.89,13.19
+Malaysia,George Town,5.41,100.33
+Malaysia,Johor Bahru,1.49,103.74
+Malaysia,Kuala Lumpur,3.14,101.69
+Mexico,Guadalajara,20.66,-103.35
+Mexico,Mexico City,19.43,-99.13
+Mexico,Monterrey,25.69,-100.32
+Morocco,Casablanca,33.57,-7.59
+Morocco,Rabat,34.02,-6.84
+Mozambique,Maputo,-25.97,32.57
+Netherlands,Amsterdam,52.37,4.90
+Netherlands,Rotterdam,51.92,4.48
+Netherlands,The Hague,52.08,4.30
+Netherlands,Utrecht,52.09,5.12
+Nigeria,Lagos,6.52,3.38
+North Macedonia,Bitola,41.03,21.34
+North Macedonia,Skopje,42.00,21.43
+Norway,Bergen,60.39,5.32
+Norway,Oslo,59.91,10.75
+Norway,Trondheim,63.43,10.40
+Pakistan,Islamabad,33.68,73.05
+Pakistan,Karachi,24.86,67.01
+Pakistan,Lahore,31.55,74.34
+Pakistan,Rawalpindi,33.60,73.04
+Palestine,Gaza,31.50,34.47
+Palestine,Jerusalem,31.77,35.21
+Peru,Lima,-12.05,-77.04
+Philippines,Cebu,10.32,123.89
+Philippines,Davao,7.07,125.61
+Philippines,Manila,14.60,120.98
+Philippines,Quezon City,14.68,121.04
+Poland,Gdansk,54.35,18.65
+Poland,Krakow,50.06,19.94
+Poland,Lodz,51.76,19.46
+Poland,Lublin,51.25,22.57
+Poland,Poznan,52.41,16.93
+Poland,Szczecin,53.43,14.55
+Poland,Warsaw,52.23,21.01
+Poland,Wroclaw,51.11,17.04
+Portugal,Lisbon,38.72,-9.14
+Qatar,Doha,25.29,51.53
+Romania,Bucharest,44.43,26.10
+Romania,Cluj-Napoca,46.77,23.59
+Romania,Constanta,44.18,28.65
+Romania,Iasi,47.16,27.59
+Romania,Timisoara,45.75,21.23
+Russia,Chelyabinsk,55.16,61.43
+Russia,Irkutsk,52.29,104.30
+Russia,Kazan,55.79,49.12
+Russia,Khabarovsk,48.48,135.08
+Russia,Krasnodar,45.04,38.98
+Russia,Krasnoyarsk,56.01,92.85
+Russia,Moscow,55.76,37.62
+Russia,Nizhny Novgorod,56.33,44.00
+Russia,Novosibirsk,55.03,82.92
+Russia,Omsk,54.99,73.37
+Russia,Perm,58.01,56.23
+Russia,Rostov-on-Don,47.24,39.72
+Russia,Saint Petersburg,59.93,30.34
+Russia,Samara,53.20,50.15
+Russia,Saratov,51.53,46.03
+Russia,Sevastopol,44.62,33.52
+Russia,Simferopol,44.95,34.10
+Russia,Tyumen,57.15,65.53
+Russia,Ufa,54.74,55.97
+Russia,Vladivostok,43.12,131.89
+Russia,Volgograd,48.71,44.51
+Russia,Voronezh,51.67,39.18
+Russia,Yekaterinburg,56.84,60.65
+Saudi Arabia,Jeddah,21.54,39.17
+Saudi Arabia,Riyadh,24.71,46.68
+Senegal,Dakar,14.72,-17.47
+Serbia,Belgrade,44.79,20.45
+Serbia,Nis,43.32,21.90
+Serbia,Novi Sad,45.25,19.84
+Slovakia,Bratislava,48.15,17.11
+Slovakia,Kosice,48.72,21.26
+Slovakia,Presov,49.00,21.24
+Slovenia,Ljubljana,46.06,14.51
+Slovenia,Maribor,46.55,15.65
+Somalia,Hargeisa,9.56,44.06
+Somalia,Mogadishu,2.05,45.32
+South Africa,Cape Town,-33.92,18.42
+South Africa,Johannesburg,-26.20,28.05
+South Africa,Pretoria,-25.75,28.19
+South Korea,Busan,35.18,129.08
+South Korea,Incheon,37.46,126.71
+South Korea,Seoul,37.57,126.98
+Spain,Barcelona,41.39,2.17
+Spain,Madrid,40.42,-3.70
+Spain,Seville,37.39,-5.99
+Spain,Valencia,39.47,-0.38
+Sudan,Khartoum,15.50,32.56
+Sweden,Gothenburg,57.71,11.97
+Sweden,Malmo,55.60,13.00
+Sweden,Stockholm,59.33,18.07
+Switzerland,Geneva,46.20,6.14
+Switzerland,Zurich,47.38,8.54
+Syria,Aleppo,36.20,37.16
+Syria,Damascus,33.51,36.28
+Syria,Idlib,35.93,36.63
+Thailand,Bangkok,13.76,100.50
+Thailand,Chiang Mai,18.79,98.98
+Thailand,Phuket,7.88,98.39
+Tunisia,Tunis,36.81,10.18
+Turkey,Adana,37.00,35.32
+Turkey,Ankara,39.93,32.86
+Turkey,Antalya,36.90,30.70
+Turkey,Bursa,40.19,29.06
+Turkey,Gaziantep,37.07,37.38
+Turkey,Istanbul,41.01,28.98
+Turkey,Izmir,38.42,27.14
+Turkey,Kayseri,38.72,35.49
+Turkey,Konya,37.87,32.48
+Turkey,Mersin,36.80,34.64
+UAE,Abu Dhabi,24.45,54.38
+UAE,Dubai,25.20,55.27
+UK,Birmingham,52.49,-1.89
+UK,Cardiff,51.48,-3.18
+UK,London,51.51,-0.13
+UK,Manchester,53.48,-2.24
+USA,Chicago,41.88,-87.63
+USA,Houston,29.76,-95.37
+USA,Los Angeles,34.05,-118.24
+USA,Miami,25.76,-80.19
+USA,New York,40.71,-74.01
+USA,Washington DC,38.91,-77.04
+Ukraine,Chernihiv,51.49,31.29
+Ukraine,Dnipro,48.46,35.05
+Ukraine,Donetsk,48.02,37.80
+Ukraine,Kharkiv,49.99,36.23
+Ukraine,Kherson,46.64,32.62
+Ukraine,Kyiv,50.45,30.52
+Ukraine,Luhansk,48.57,39.31
+Ukraine,Lviv,49.84,24.03
+Ukraine,Mariupol,47.10,37.54
+Ukraine,Mykolaiv,46.97,32.00
+Ukraine,Odesa,46.48,30.73
+Ukraine,Poltava,49.59,34.55
+Ukraine,Rivne,50.62,26.25
+Ukraine,Vinnytsia,49.23,28.47
+Ukraine,Zaporizhzhia,47.84,35.14
+Ukraine,Zhytomyr,50.25,28.66
+Uruguay,Montevideo,-34.90,-56.16
+Uzbekistan,Samarkand,39.65,66.96
+Uzbekistan,Tashkent,41.30,69.24
+Venezuela,Caracas,10.48,-66.90
+Vietnam,Da Nang,16.05,108.20
+Vietnam,Hanoi,21.03,105.85
+Vietnam,Ho Chi Minh City,10.82,106.63
+Yemen,Sanaa,15.37,44.19

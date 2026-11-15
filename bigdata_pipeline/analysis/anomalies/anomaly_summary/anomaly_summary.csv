@@ -1,0 +1,12 @@
+metric,value
+cities analysed,75
+days,3295
+first day,2015-09-22
+last day,2024-09-28
+anomalous city-days,1070
+episodes,604
+... spikes (1-2 days),538
+... short (3-7 days),45
+... sustained (> 7 days),21
+synchronized peaks (>= 3 cities together),44
+... flagged global,0
