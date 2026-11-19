@@ -1,0 +1,61 @@
+{
+  "parameters": {
+    "pairs": "bigdata_pipeline\\analysis\\suspicious_deep\\pair_profiles\\pair_profiles.csv",
+    "metadata": "telescope_files\\Source_Channel_Metadata.csv",
+    "temporal": "telescope_files\\Temporal_Channel_Metadata.csv",
+    "languages": "telescope_files\\Channel_Language.csv",
+    "out": "bigdata_pipeline\\analysis\\suspicious_metadata",
+    "figdir": "bigdata_pipeline\\analysis\\figures\\suspicious_metadata",
+    "hour_columns": null,
+    "creation_column": null,
+    "min_hour_sum": 0.0,
+    "activity_bins": 5,
+    "seed": 42,
+    "no_plots": false
+  },
+  "temporal_schema": {
+    "temporal_rows": 71074,
+    "valid_unique_hour_profiles": 71050,
+    "invalid_or_below_min_rows": 24,
+    "conflicting_hour_profiles_excluded": 0,
+    "id_column": "filename",
+    "hour_columns": [
+      "0-1 hr",
+      "1-2 hr",
+      "2-3 hr",
+      "3-4 hr",
+      "4-5 hr",
+      "5-6 hr",
+      "6-7 hr",
+      "7-8 hr",
+      "8-9 hr",
+      "9-10 hr",
+      "10-11 hr",
+      "11-12 hr",
+      "12-13 hr",
+      "13-14 hr",
+      "14-15 hr",
+      "15-16 hr",
+      "16-17 hr",
+      "17-18 hr",
+      "18-19 hr",
+      "19-20 hr",
+      "20-21 hr",
+      "21-22 hr",
+      "22-23 hr",
+      "23-24 hr"
+    ],
+    "creation_column": null,
+    "profile_scale": "normalized input bins; bin sum is not assumed to be lifetime message count"
+  },
+  "language_scope": "observed channel-language labels only; no inference from user lang_code",
+  "matching": "observed language + normalized-input-bin-sum quantile, one channel reference without replacement",
+  "time_scope": "hour labels as supplied; no local-night interpretation without timezone confirmation",
+  "limitations": [
+    "Snapshot metadata is not a historical timeline.",
+    "Pair similarities are statistically dependent through shared endpoints.",
+    "Unselected references are not established benign channels.",
+    "Flags are contextual platform annotations, not ground truth for synchronized abuse.",
+    "Original descriptions are not exported; extracted URLs/mentions may still contain public identifying information."
+  ]
+}

@@ -1,0 +1,12 @@
+﻿metric,value
+input_candidate_pairs,33360
+candidate_endpoint_channels,8114
+unique_channel_metadata_records,101278
+candidate_endpoints_with_metadata,8094
+candidate_endpoints_with_hour_profile,8094
+matched_reference_channels,8050
+candidate_pairs_with_both_hour_profiles,33291
+pairs_with_matched_reference_similarity,33137
+candidate_pairs_sharing_profile_url,0
+candidate_pairs_sharing_profile_target,0
+pairs_with_recorded_creation_gap,0

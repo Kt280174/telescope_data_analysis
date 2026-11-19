@@ -20,6 +20,7 @@ import streamlit as st
 import streamlit.components.v1 as components
 
 from telescope_captions import describe, title_of
+from telescope_pair_explorer import render_pair_explorer
 
 # ----------------------------------------------------------------- configuration
 THEMES = {   # page id -> folders under the analysis directory (fixed layout, no search)
@@ -28,6 +29,7 @@ THEMES = {   # page id -> folders under the analysis directory (fixed layout, no
     "theme3": {"tables": ["tracing"], "figures": ["figures/traceability"]},
     "theme4": {"tables": ["geo", "anomalies"], "figures": ["figures/geo", "figures/anomalies"],
                "maps": "figures/anomalies"},
+    "theme5": {"tables": ["suspicious_deep", "suspicious_metadata"], "figures": ["figures/suspicious_deep", "figures/suspicious_metadata"], "maps": "figures/suspicious_deep"},
 }
 # figures checked during the analyses (after deduplication): label key -> value
 PIPELINE_KPI = [
@@ -43,6 +45,8 @@ ID_HINTS = re.compile(r"(^id$|_id$|^channel|^source$|^name$|^file|community|clus
 # ----------------------------------------------------------------- translations
 LANGS = {"ru": "Русский", "en": "English", "fr": "Français"}
 TEXT = {
+    "theme5_title": {"fr": "Thème 5 — Tendances suspectes", "en": "Theme 5 — Suspicious trends", "ru": "Тема 5 — Подозрительные тенденции"},
+    "theme5_intro": {"fr": "Synchronisation répétée des transferts : candidats, exemples et vérification manuelle. La synchronisation ne prouve pas un abus.", "en": "Repeated forwarding synchrony: candidates, examples and manual review. Synchrony does not prove abuse.", "ru": "Повторяющаяся синхронность пересылок: кандидаты, примеры и ручная проверка. Синхронность не доказывает злоупотребление."},
     "analysis_dir": {"fr": "Dossier d'analyse", "en": "Analysis folder", "ru": "Папка анализа"},
     "language": {"fr": "Langue", "en": "Language", "ru": "Язык"},
     "page": {"fr": "Page", "en": "Page", "ru": "Страница"},
@@ -368,6 +372,23 @@ def page_theme(page_id: str, analysis: Path) -> None:
     cfg = THEMES[page_id]
     st.header(tr(f"{page_id}_title"))
     st.write(tr(f"{page_id}_intro"))
+    # TELEScope_PAIR_EXPLORER
+    if page_id == "theme5":
+        render_pair_explorer(analysis, LANG)
+    if page_id == "theme5":
+        draft = analysis / "suspicious_deep" / "section_5_draft.md"
+        if draft.is_file():
+            with st.expander({"ru": "Черновик раздела 5", "en": "Section 5 draft", "fr": "Brouillon de la section 5"}[LANG]):
+                st.markdown(read_text(draft))
+    if page_id == "theme5":
+        metadata_draft = analysis / "suspicious_metadata" / "section_5_metadata_draft.md"
+        if metadata_draft.is_file():
+            with st.expander({"ru": "Метаданные: методика и результаты", "en": "Metadata: methods and results", "fr": "Métadonnées : méthodes et résultats"}[LANG]):
+                st.markdown(read_text(metadata_draft))
+        metadata_run = analysis / "suspicious_metadata" / "run_info_metadata.json"
+        if metadata_run.is_file():
+            with st.expander({"ru": "Параметры анализа метаданных", "en": "Metadata analysis parameters", "fr": "Paramètres des métadonnées"}[LANG]):
+                st.code(read_text(metadata_run), language="json")
     tdirs = [analysis / t for t in cfg["tables"]]
     fdirs = [analysis / f for f in cfg["figures"]]
     files: dict[str, Path] = {}
@@ -386,7 +407,8 @@ def page_theme(page_id: str, analysis: Path) -> None:
         with st.expander(tr("protocol")):
             st.markdown(read_text(protocol))
 
-    labels = [tr("tab_tables"), tr("tab_figs")] + ([tr("tab_maps")] if "maps" in cfg else [])
+    interactive_label = {"ru": "Интерактивные группы", "en": "Interactive groups", "fr": "Groupes interactifs"}[LANG] if page_id == "theme5" else tr("tab_maps")
+    labels = [tr("tab_tables"), tr("tab_figs")] + ([interactive_label] if "maps" in cfg else [])
     tabs = st.tabs(labels)
     with tabs[0]:
         if files:
@@ -398,7 +420,15 @@ def page_theme(page_id: str, analysis: Path) -> None:
         figures_view(fdirs, get_table)
     if "maps" in cfg:
         with tabs[2]:
-            maps_view(analysis / cfg["maps"], get_table)
+            if page_id == "theme5":
+                files = sorted((analysis / cfg["maps"]).glob("map_*.html"))
+                if not files:
+                    st.info({"ru": "Нет интерактивного графа: запустите полный анализ. Граф создаётся при наличии отфильтрованных групп до 60 каналов.", "en": "No interactive graph: run the full analysis. A graph is produced when filtered groups of up to 60 channels exist.", "fr": "Aucun graphe : lancez l'analyse complète. Il faut des groupes filtrés de 60 canaux maximum."}[LANG])
+                for file in files:
+                    st.caption({"ru": "Связи отражают отфильтрованную синхронность, не подтверждённые кампании.", "en": "Edges represent filtered synchrony, not confirmed campaigns.", "fr": "Les liens représentent la synchronisation filtrée, pas des campagnes confirmées."}[LANG])
+                    components.html(read_text(file), height=650, scrolling=True)
+            else:
+                maps_view(analysis / cfg["maps"], get_table)
 
 
 def main() -> None:

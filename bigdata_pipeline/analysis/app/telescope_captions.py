@@ -623,6 +623,39 @@ REGISTRY: dict[str, dict] = {
 }
 
 
+REGISTRY.update({
+    "sync_support_vs_share": dict(
+        title=L3("Synchronisation répétée", "Repeated synchrony", "Повторяющаяся синхронность"),
+        what=L3("Nombre de publications synchronisées et leur part parmi les publications communes. Candidats uniquement, pas une preuve d'abus.", "Synchronized-post counts and their share among shared posts. Candidates only, not proof of abuse.", "Число синхронных публикаций и их доля среди общих. Только кандидаты, не доказательство злоупотребления.")),
+    "candidate_overlap": dict(
+        title=L3("Recouvrement des publications", "Shared-post overlap", "Пересечение публикаций"),
+        what=L3("Publications communes divisées par le nombre de publications du canal le moins actif.", "Shared posts divided by the number of posts of the less active channel.", "Общие публикации, делённые на число публикаций менее активного канала.")),
+})
+
+
+
+REGISTRY.update({
+    "pair_delay_distribution": dict(title=L3("Délais des paires", "Pair delays", "Задержки пар"), what=L3("Distribution des écarts médians des paires candidates.", "Distribution of median gaps for candidate pairs.", "Распределение медианных временных разрывов пар-кандидатов.")),
+    "temporal_persistence": dict(title=L3("Persistance temporelle", "Temporal persistence", "Устойчивость во времени"), what=L3("Nombre de jours et concentration sur le jour le plus actif.", "Active days versus concentration on the busiest day.", "Число дней и концентрация синхронных публикаций в самый активный день.")),
+    "top_pair_sources": dict(title=L3("Sources communes", "Shared sources", "Общие источники"), what=L3("Sources principales de la première paire sélectionnée.", "Largest sources for the first selected pair.", "Основные источники первой выбранной пары.")),
+    "pair_weekly_activity": dict(title=L3("Activité hebdomadaire", "Weekly activity", "Активность по неделям"), what=L3("Publications synchronisées par semaine pour cinq paires sélectionnées au maximum.", "Synchronized posts per week for up to five selected pairs.", "Синхронные публикации по неделям для максимум пяти выбранных пар.")),
+    "pair_example_timeline": dict(title=L3("Exemples temporels", "Example timeline", "Временные примеры"), what=L3("Chaque ligne est une publication commune ; temps relatif au canal A.", "Each row is a shared post; times are relative to channel A.", "Каждая строка — общая публикация; время относительно канала A.")),
+    "observed_vs_permuted": dict(title=L3("Observé et permutations", "Observed vs shuffled", "Наблюдение и перестановки"), what=L3("Exploration après sélection : pas un test confirmatoire d'abus.", "Exploration after selection: not a confirmatory abuse test.", "Исследовательская проверка после отбора, не подтверждающий тест злоупотребления.")),
+    "interaction_context": dict(title=L3("Contexte des interactions", "Interaction context", "Контекст взаимодействий"), what=L3("Rang du compteur de transferts dans le canal source et l'année ; moment de collecte non contrôlé.", "Forward-counter rank within source channel and year; collection timing not controlled.", "Ранг счётчика пересылок внутри канала-источника и года; время сбора не контролируется.")),
+})
+
+
+
+REGISTRY.update({
+    "metadata_flag_comparison": dict(title=L3("Indicateurs de la plateforme", "Platform flags", "Метки платформы"), what=L3("Comparaison descriptive des canaux candidats et des références appariées ; les valeurs manquantes ne sont pas fausses.", "Descriptive paired candidate/reference comparison; missing flags are not false.", "Описательное сравнение кандидатов и сопоставленных каналов; отсутствующие флаги не считаются ложными.")),
+    "metadata_hour_similarity": dict(title=L3("Similarité horaire", "Hourly similarity", "Сходство почасовых профилей"), what=L3("Similarité cosinus des profils 24 heures pour les paires ayant aussi des références appariées.", "Cosine similarity of 24-hour profiles on pairs with matched endpoint references.", "Косинусная близость профилей 24 часов для пар с сопоставленными каналами сравнения.")),
+    "metadata_hour_heatmap": dict(title=L3("Profils de 24 heures", "24-hour profiles", "Профили 24 часов"), what=L3("Profils normalisés des canaux les plus connectés dans la liste de paires candidates.", "Normalized hourly profiles of endpoints with the highest candidate-pair degree.", "Нормированные профили каналов с наибольшим числом связей в списке пар-кандидатов.")),
+    "metadata_entropy_peak": dict(title=L3("Concentration horaire", "Hourly concentration", "Почасовая концентрация"), what=L3("Entropie horaire et part de l'heure maximale ; pas un classifieur de bots.", "Hourly entropy and peak-hour share; not a bot classifier.", "Почасовая энтропия и доля максимального часа; это не классификатор ботов.")),
+    "metadata_shared_links": dict(title=L3("Liens communs des profils", "Shared profile links", "Общие ссылки в профилях"), what=L3("Liens et cibles communs dans les descriptions des canaux, pas dans les messages.", "Shared links/targets in channel descriptions, not in posts.", "Общие ссылки и упоминания в описаниях каналов, не в сообщениях.")),
+    "metadata_creation_gap": dict(title=L3("Dates de création enregistrées", "Recorded creation dates", "Записанные даты создания"), what=L3("Écart entre dates explicitement enregistrées comme création ; date générique du canal non utilisée.", "Gaps between explicitly recorded creation dates; generic channel date is not used.", "Разрывы между явно записанными датами создания; общее поле date канала не используется.")),
+})
+
+
 def describe(stem: str, lang: str, get_table) -> tuple[str, str]:
     """(what the chart shows, key figures) for a chart or map file stem; empty strings when unknown."""
     e = REGISTRY.get(stem)

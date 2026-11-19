@@ -1,0 +1,12 @@
+﻿metric,value
+input_candidate_pairs,33360.0
+pairs_still_eligible,33360.0
+candidate_endpoint_channels,8114.0
+pairs_with_count_mismatch,0.0
+median_sync_posts,24.0
+median_sync_days,14.0
+median_sync_share,0.17834394904458598
+filtered_graph_components,367.0
+exploratory_null_pairs,10.0
+detail_pair_episode_links,117.0
+source_posts_with_interaction_context,0.0

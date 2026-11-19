@@ -1,0 +1,12 @@
+﻿metric,value
+all_chain_rows,31705915.0
+candidate_endpoint_channels,8114.0
+endpoint_rows_scanned,21839087.0
+endpoint_rows_missing_keys,0.0
+endpoint_rows_invalid_time,0.0
+endpoint_self_forwards_removed,100527.0
+later_same_channel_post_relays_removed,264237.0
+earliest_endpoint_channel_post_rows,21474323.0
+distinct_original_posts_in_endpoint_corpus,13516755.0
+channels_with_valid_relays,8114.0
+memory_prepared_dataframe_gib,0.8

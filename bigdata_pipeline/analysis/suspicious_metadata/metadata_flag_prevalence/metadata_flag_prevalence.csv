@@ -1,0 +1,9 @@
+﻿cohort,flag,total_channels,known_channels,positive_channels,unknown_channels,positive_share_known
+candidate,scam,8114,8094,11,20,0.0013590313812700766
+candidate,fake,8114,8094,9,20,0.001111934766493699
+candidate,restricted,8114,8094,40,20,0.004941932295527552
+candidate,verified,8114,8094,255,20,0.03150481838398814
+matched_reference,scam,8050,8050,5,0,0.0006211180124223603
+matched_reference,fake,8050,8050,2,0,0.0002484472049689441
+matched_reference,restricted,8050,8050,48,0,0.005962732919254659
+matched_reference,verified,8050,8050,264,0,0.03279503105590062
